@@ -380,9 +380,9 @@ Therefore change in theta with change in time $\Delta t$ is-
  \begin{equation}
      \Delta\theta= 2\pi f\Delta t
  \end{equation}
- However, $\Delta t= \frac{2\Delta d}{c}$ and $f= \frac{c}{\lambda},  \therefore$ putting everything together - 
+ For the purpose of simplicity, we represent change in phase i.e, $\delta \theta$ with $\omega$. It is known that, $\Delta t= \frac{2\Delta d}{c}$ and $f= \frac{c}{\lambda},  \therefore$ putting everything together - 
  \begin{equation}\label{eq:theta}
-     \Delta\theta= \frac{4\pi \Delta d}{\lambda}
+     \omega= \frac{4\pi \Delta d}{\lambda}
  \end{equation} 
 
 This is the change in phase of the IF signal, when an object moves by distance 
@@ -394,8 +394,12 @@ The phase of the IF signal is very sensitive to to small change in object range 
  \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
-    \includegraphics[width=0.8\textwidth]{Master's thesis/images/delay.jpg} 
-    \caption{Wave and its Euler representation}
+    \includegraphics[width=0.6\textwidth]{Master's thesis/images/delay_sweeps.PNG} 
+     
+    \caption{Two consecutive chirps giving rise to a phase difference}
+    \caption*{\textit{Source:} Nilsson, J., Hassbring, L. (2020). Machine Learning for FMCW Radar Interference Mitigation~\cite{nilsson2020machine}.}
+    
+
     \label{fig:delay}
   \end{center}
 \end{figure}  
@@ -403,42 +407,72 @@ The phase of the IF signal is very sensitive to to small change in object range 
 To calculate the velocity of the object, two chirps are transmitted separated by time interval of $T_{c}$.
 It is known that $d= vT$ (v is velocity of the target object), From Eq. ~\ref{eq:theta}, substituting $\Delta d$, we get -
 \begin{equation}
-    \Delta\theta= \frac{4\pi v \Delta t}{\lambda}
+    \omega= \frac{4\pi v \Delta t}{\lambda}
 \end{equation}
 Substituting $\Delta t$ with $T_{c}$, which is the time between two consecutive sweeps and reordering, we get-
 
 \begin{equation}
-    v= \frac{\lambda \Delta\theta}{4\pi T_{c}}
+    v= \frac{\lambda \omega}{4\pi T_{c}}
 \end{equation}
 Therefore, in summary, it can be said that the phase difference obtained from the Fourier transformation of two consecutive chirps, can help in determining the velocity of that object. 
 
 The phase shift between consecutive chirps is the same for any two chirps. This phase shift can be easily calculated by performing FFT on the Range FFT from each chirp. This is called Doppler FFT. The whole process is the called Range-Doppler FFT, i.e, first performing Range FFT on the signals to evaluate the Range and then performing another Doppler FFT on consecutive chirps to obtain the velocities of these objects and then to differentiate them. 
 The Range Doppler FFT is done with the help of matrix, with the dimensions N x M where M is the number of chirps and N is the number of samples in each chirp.
 
-A proper visualization of the Range-Doppler FFT process can be seen in Figure ~\ref{fig:range-doppler-FFT}. Every IF signal/Baseband signal have its own phase. Every baseband signal is inserted row wise in a matrix. Every row undergoes a Range FFT operation for Range estimation. This is done in parallel as soon as the FMCW received the RX signals. The result is peak in some columns of the matrix. Once the number of received signals are enough, column wise FFTs are performed for a radial velocity estimation. This results in peaks in different cells of the matrix. These cells corresponds to different objects at different locations from FMCW and moving at a different radial velocity to/from FMCW. The Doppler-FFT change the Range x Chirp index dimension to Range x Velocity. Also, frequency is changed from the range from [0, $2\pi$] to [-$\pi$,$\pi$] in the normalized frequency domain. This makes sure that even the negative velocities are captured.
-
-
-
-<-----change this image asap ---->
+A proper visualization of the Range-Doppler FFT process can be seen in Figure ~\ref{fig:range-doppler-FFT}. Every IF signal/Baseband signal have its own phase. Every baseband signal is inserted row wise in a matrix. Every row undergoes a Range FFT operation for Range estimation. This is done in parallel as soon as the FMCW received the RX signals. The result is peak in some columns of the matrix. Once the number of received signals are enough, column wise FFTs are performed for a radial velocity estimation.
  \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
-    \includegraphics[width=1\textwidth]{Master's thesis/images/range-doppler-FFT.PNG} 
-    \caption{range-doppler-FFT}
+    \includegraphics[width=0.7\textwidth]{Master's thesis/images/range_doppler1.png}
+    \caption{Range-doppler-FFT}
     \label{fig:range-doppler-FFT}
   \end{center}
 \end{figure}  
 
 
 
+This results in peaks in different cells of the matrix. These cells corresponds to different objects at different locations from FMCW and moving at a different radial velocity to/from FMCW. The Doppler-FFT change the Range x Chirp index dimension to Range x Velocity. Also, frequency is changed from the range from [0, $2\pi$] to [-$\pi$,$\pi$] in the normalized frequency domain. This makes sure that even the negative velocities are captured.
 
-
-
-
-
-
+Therefore in summary, it can be said that for the object at different ranges or the objects at different ranges can be easily detected using Range-Doppler FFT.
 
 \subsubsection{Phase Evaluation for moving targets}
+
+In the previous subsection, the complete process about Range-Doppler FFT was explained. However, now one most case rises up, where the Range-Doppler FFT fails completely. Consider a case where two objects at same radial distance are moving to/from the FMCW at the same radial velocity. The Range-Doppler FFT will give rise to one bin for two different object. So this situation forces us to ask the question
+\textit{"How can the two objects placed at same radial distance and moving with same radial velocity from FMCW can be  separated?"}
+
+A very simple answer is to give two eyes to the FMCW. The main advantage of humans having two eyes is to interpret the world in 3D, i.e, humans can perceive the depth of the objects in field of view because eyes are located at different points. So using this analogy, if we use multiple receiving antennas for the FMCW, it will help us solving the problem in question.
+
+An FMCW measures Angle of Arrival(AoA) to resolve this problem. Angle estimation will require a minimum of 2 receiver antennas. Assuming the receiver antennas are placed in close proximity, there ratio of the radial distance from one antenna with other will be close to 1. This means, even if the two antennas in consideration have some Range FFT (as they are almost at same radial distance from the object), there will be a phase change involved. Eq. ~\ref{eq:theta}, shows that an object which made a small change in distance $\Delta d$ in two consecutive sweeps give rise to a phase difference $\Delta \theta$ or $\omega$.
+\[\omega= \frac{4\pi \Delta d}{\lambda}\]
+Using the same mathematical notation, it can be said that the phase difference between the two antennas will be
+\begin{equation}\label{eq:AoA}
+\omega= \frac{2\pi \Delta d}{\lambda}    
+\end{equation}
+Here is the eq.~\ref{eq:AoA}, the equation has a factor of 2 instead of 4 in eq.~\ref{eq:theta}. The difference can be understood by mere intuition. When an object moves by some distance $\Delta d$, the phase difference will brought out by the two and fro signal. Here , in contrast, the phase difference is brought by the distance between the two receiving antennas. This is the reason the eq. has been divided by 2 ~\cite{rao_2017}.
+ \begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=0.3\textwidth]{Master's thesis/images/AoA.PNG} 
+    \caption{Angle of arrival in case of two receiver antennas}
+    \label{fig:AoA}
+  \end{center}
+\end{figure}  
+Using the geometry of Fig ~\ref{fig:AoA} and using eq.~\ref{eq:AoA}, it can be derived that-
+\[\omega= \frac{2\pi dsin(\theta)}{\lambda}\]
+Hence, $\theta$ which is the AoA can be derived as-
+\begin{equation}
+    \theta= sin^{-1}(\frac{\lambda\omega}{2\pi d})
+\end{equation}
+It is worth mentioning that the maximum phase difference can be more than $\pi$, For phase difference more than $\pi$,it will be impossible to say of the phase difference was actually $\theta$ or $\theta-\pi$.
+
+Now consider the \textbf{figure},it is pretty much evident that the two objects at same radial distance will result in same peaks in the Range-Doppler FFT, however multiple antennas give rise to a phase difference.
+
+
+
+
+If another FFT is applied on these phase differences, this give rise to an FFT sequence which is called \textbf{angle-FFT}. Angle FFT helps in resolving such two objects.
+
+
 \subsubsection{Micro Doppler}
 
 
