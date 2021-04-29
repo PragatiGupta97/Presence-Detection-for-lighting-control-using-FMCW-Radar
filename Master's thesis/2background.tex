@@ -1,7 +1,7 @@
 \chapter{Background and Literature Review}
 \label{chapter:background} 
 
-Human Detection can be conducted using a varierty of methods, such as, Passive Infrared Sensors (PIR's), Presure sensors, Thermal Imaging, Infrared Cameras, Video Cameras, Carbon dioxide concentration, and Range Finders like RADAR, Sonar and Lidar.
+Human Detection can be conducted using a variety of methods, such as, Passive Infrared Sensors (PIR's), Pressure sensors, Thermal Imaging, Infrared Cameras, Video Cameras, Carbon dioxide concentration, and Range Finders like RADAR, Sonar and Lidar.
 
 \section{Previous Study}
 \subsection{Cameras and Imagers}
@@ -25,18 +25,20 @@ With the advancement of Computer Vision and Deep Neural Networks, occupancy dete
 PIR sensors have been widely used for human detection systems as they are cheap and power consumption is relatively small. The main advantage of PIRs is their unobtrusive and privacy-preserving interaction.
 \\
 
-Kim, Sun Ho, et al.~\cite{kim2017improved} studied the use of passive infrared (PIR) sensors along with a door sensor to ensure the accuracy of occupancy detection. The algorithm could detect with an improved occupancy detection accuracy rates of 99.8 \% (when the number of occupants is 1 to 6) and 90.1\% (when the number of occupants is: 1) were achieved.The results of the experiments show that the occupancy detection algorithm along with a door sensor could be used to improve the occupancy detection accuracy rates of
-the PIR sensors.
-\\
-	
 Teixeira, Thiago et al.~\cite{teixeira2010survey} provided a survey of the multidisciplinary literature of human-sensing including presence detection.From the presence detection perspective, PIR sensors are often used for binary sensing as they are cheap sensors and have very low power requirements. However, the main
 disadvantage of this is that PIRs tend to produce bursty positive detection and a large number of false negative
 detection, for example, PIRs cannot sense people who are
 standing still.
 \\
 
+Kim, Sun Ho, et al.~\cite{kim2017improved} studied the use of passive infrared (PIR) sensors along with a door sensor to ensure the accuracy of occupancy detection. The algorithm could detect with an improved occupancy detection accuracy rates of 99.8 \% (when the number of occupants is 1 to 6) and 90.1\% (when the number of occupants is: 1) were achieved.The results of the experiments show that the occupancy detection algorithm along with a door sensor could be used to improve the occupancy detection accuracy rates of
+the PIR sensors.
+\\
+	
+
+
 The use of only PIR sensors for occupancy monitoring does not offer enough savings and depends a lot on the type of the building and its occupancy. Aslam, Javed, et al.~\cite{manzoor2012occupancy} presented a paper using data fusion approach of traditional occupancy monitoring PIR sensor with passive Radio Frequency Identification (RFID).
-The users of the experiment are provided with Ultra High Frequency (UHF) tags. The RFID readers which are mounted on the door, detects any tag tag which passes through them.
+The users of the experiment are provided with Ultra High Frequency (UHF) tags. The RFID readers which are mounted on the door, detects any tag which passes through them.
 \\
 However from the saving perspective, The time duration for which the maximum number of lights switched on all at the same time, is much less than PIR. Additionally, the time duration for the minimum number of lights switched ON for
 this method is longer than using PIRs standalone 
@@ -48,10 +50,10 @@ Due to the less reliability in signal propagation that comes with passive RFID t
 \subsection{Sensing using Carbon dioxide}
 
 
-Ansanay-Alex,Guillaume~\cite{ansanay2013estimating} proposes a algorithm to use only indoor carbon dioxide concentrations to provide estimated occupancy profile in office setup. This paper simply used the gradient of the monitored co2 in order to make detection. The method is well functional for arrivals and departures in a closed space. However the results are considerable if the air change rate of the room remain inert for some duration of time, i.e window opening or door opening may lead to wrong  results. These are also rarely used for the control of lighting systems due to their slow response and sensitivity to environmental conditions~\cite{teixeira2010survey}.
+Ansanay-Alex,Guillaume~\cite{ansanay2013estimating} proposes a algorithm to use only indoor carbon dioxide concentrations to provide estimated occupancy profile in office setup. This paper simply used the gradient of the monitored CO$_{2}$ in order to make detection. The method is well functional for arrivals and departures in a closed space. However the results are considerable if the air change rate of the room remain inert for some duration of time, i.e window opening or door opening may lead to wrong  results. These are also rarely used for the control of lighting systems due to their slow response and sensitivity to environmental conditions~\cite{teixeira2010survey}.
 \\
 
-Cali, Davide, et al~\cite{cali2015co2} proposed an algorithm to predict the occupancy detection using concentration of carbon dioxide with cheap co2 sensors. The algorithm uses mass balance equation and assumes air to be homogeneous, i.e, the ideal mix of supply and room air. The results of the algorithm provides correct presence profile up to 95.8\%  of the time, whereas for the people
+Cali, Davide, et al~\cite{cali2015co2} proposed an algorithm to predict the occupancy detection using concentration of carbon dioxide with cheap CO$_{2}$ sensors. The algorithm uses mass balance equation and assumes air to be homogeneous, i.e, the ideal mix of supply and room air. The results of the algorithm provides correct presence profile up to 95.8\%  of the time, whereas for the people
 counting, it correctly predicted up to 80.6\%  of the time. The authors of papers used presence patters as inputs of stochastic user models to predict occupancy. 
 
 
@@ -86,11 +88,8 @@ Based on the medium of propagation, range finders are classified into different 
 Among all of the range finders, laser based ranging (LADAR) is least sensitive to multiple reflections, scattering and cluttering. Arras, Kai O., et al.~\cite{arras2007using} presented a paper for the detection and tracking of people with LADAR (laser) range finders. The authors of the papers used supervised learning technique to create a classifier for detection of humans. Unlike vision sensors, LADARs provide a large field of view (FOV) and is almost unaffected by other conditions. The sensors are placed very close to the ground and extract the readings from the legs of the people. A 2D range image is created out of the received signals. The common approach is to extract legs by detecting moving blobs. The experiment obtained detection rates of over 90\%. However the problem still remains of the false negatives. LADARs are still not a reliable solution to be deployed as a standalone. Usually they are paired up cameras for the gaming industry. But they remain less efficient for working premises.
 \\
 
-Premebida et al.~\cite{teixeira2010survey} discusses outdoor presence detection like pedestrian detection using exclusively LIDAR based features.
-
-
-----complete this-------
-\\
+%Premebida et al.~\cite{teixeira2010survey} discusses outdoor presence detection like pedestrian detection using exclusively LIDAR based features.
+%----complete this------- %
 
 RADAR is one of the most prominent range finder used for occupancy detection. It can give accurate results in all types of luminance scenarios and all weather conditions.
 G\"{u}rb\"{u}z, S. Z., et al.~\cite{gurbuz2007detection} targeted the problem of human target detection using synthetic aperture RADAR (SAR). The human spectrograms are used for the detection as the spectrograms for humans are unique is comparison to other objects. Simulations show that spectrograms can detect and identify human targets in low noise. However this approach works only if the target is close to the antenna and signal to noise ratio (SNR) is high. In an indoor environment where the SNR is high, it is very difficult to provide reliable estimation using this method.
@@ -110,8 +109,8 @@ The ability of the RADARs to penetrate objects like wall, make them less likely 
 \\
 
 \section{RADAR technology}
-RAdio Detection And Ranging is an electromagnetic range finder device that observed the echoed signals by their time delays.  The RADAR can operate in radio or the microwave domain. 
-It for various applications on ground, on sea and in space. The applications of RADARs are controlling the Air Traffic, Ship safety, Sensing the remote places, Military applications etc~\cite{RADAR}.
+RAdio Detection And Ranging is an electromagnetic range finder device that observed the echoed signals by their time delays.  The RADAR can operate in the radio or in the microwave domain. 
+It is used for various applications on ground, on sea and in space. The applications of RADARs are controlling the Air Traffic, Ship safety, Sensing the remote places, Military applications etc~\cite{RADAR}.
 
 As shown by Figure~\ref{fig:basic_principle}, the RADAR consists of a \textbf{Transmitter} which is used to send the signals, a \textbf{Receiver} which is used to receive the echoed signals.
 The received signals are then analysed to process the range, the velocity of the targeted object. 
@@ -119,7 +118,7 @@ The received signals are then analysed to process the range, the velocity of the
 \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
-    \includegraphics[width=0.80\textwidth]{Master's thesis/images/basic_principal.jpg} 
+    \includegraphics[width=0.70\textwidth]{Master's thesis/images/basic_block1.png} 
     \caption{The basic principle of RADAR.}
     \label{fig:basic_principle}
   \end{center}
@@ -191,41 +190,39 @@ Therefore, the frequency of the signal \(f_{t}\) at any time \(t\), with carrier
 \[f_{t}= A_{t}cos[2\pi(f_{c}t + \frac{k}{2}t^2)]\]
 
 The transmitted signal TX is transmitted through the transmitter antenna. The TX signal strikes the surface of the object and gets reflected back. The receiver of the FMCW receives this reflected signal RX via its receiving antenna. RX signal is just the same TX signal but delayed.
-To compute the range, velocity or phase of the object, the most important factor to measure is the \textbf{Baseband signal} with frequency IF known as \textbf{Intermediate Frequency (IF)}. The frequency of the Baseband signal is the difference of the instantaneous frequency of the TX-chirp and RX-chirp. It is to be noted that for a stationary object, irrespective of when the  chirp was transmitted, this IF signal will remain same, as this IF signal is proportional to the delay time which is proportional to the distance of the object from Radar.
+To compute the range, velocity or phase of the object, the most important factor to measure is the \textbf{Baseband signal} with frequency IF known as \textbf{Intermediate Frequency (IF)}. The frequency of the Baseband signal is the difference of the instantaneous frequency of the TX-chirp and RX-chirp. It is to be noted that for a stationary object, irrespective of when the  chirp was transmitted, this IF signal will remain same, as this IF signal is proportional to the delay time which is proportional to the distance of the object from Radar. Figure ~\ref{fig:IF} explains the IF signal in the mathematical way. 
 
-Figure ~\ref{fig:IF} explains the IF signal in the mathematical way. 
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Master's thesis/images/IFSignal.png}
+    \caption{IF Signal}
+    \label{fig:IF}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.55\textwidth}
+    \includegraphics[width=\textwidth]{Master's thesis/images/mixer.jpg}
+    \caption{IF signal from TX and RX}
+    \label{fig:Mixer}
+  \end{minipage}
+\end{figure}
+
  \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
-    \includegraphics[width=0.60\textwidth]{Master's thesis/images/IFSignal.png} 
-    \caption{A Baseband signal with Intermediate frequency IF}
-    \label{fig:IF}
+    \includegraphics[width=0.650\textwidth]{Master's thesis/images/fmcw_working.jpg} 
+    \caption{Block Diagram for FMCW}
+    \caption*{\textit{Source:} Radar Systems - FMCW Radar~\cite{tutorialspoint}.}
+    \label{fig:fmcw}
   \end{center}
 \end{figure}   
 
- \begin{figure}[ht]
-  \begin{center}
-    % below the size of the figure has been reduced for example
-    \includegraphics[width=0.80\textwidth]{Master's thesis/images/mixer.jpg} 
-    \caption{A resultant IF signal from Mixer}
-    \label{fig:Mixer}
-  \end{center}
-\end{figure}  
-
 Figure ~\ref{fig:fmcw} explains in detail on how this Baseband signal is produced. 
-The \textbf{Frequency Modulator} produces a modulated frequency signal TX which is transmitted using \textbf{Transmitter}. The \textbf{Local Oscillator} produces a signal having Radio Frequency \(f_{rf}\). The output of the Local Oscillator is then feeded to a mixer along with the output of the Transmitter. The \textbf{Mixer} computes then sum and the difference of the Transmitted frequency and the RF signal from Local Oscillator. A low pass filter then only allows the lower frequency to be passed i.e. only the difference of the Transmitter and the RF signal \(f_o(t) - f_{rf}\) is allowed ~\cite{tutorialspoint}. 
+The \textbf{Frequency Modulator} produces a modulated frequency signal TX which is transmitted using \textbf{Transmitter}. The \textbf{Local Oscillator} produces a signal having Radio Frequency \(f_{rf}\). The output of the Local Oscillator is then feeded to a mixer along with the output of the Transmitter. The \textbf{Mixer} computes then sum and the difference of the Transmitted frequency and the RF signal from Local Oscillator. A low pass filter then only allows the lower frequency to be passed i.e. only the difference of the Transmitter and the RF signal \(f_o(t) - f_{rf}\) is allowed. ~\cite{tutorialspoint}. 
 
 Another \textbf{Mixer}, is feeded the received signal from the receiving antenna \(f_r\) and the output of the low pass filter. It is worth mentioning that the received signal RX is just a delayed version of the transmitted signal TX. It then computes the sum and the difference of these signals again, i.e. \(f_r\) + \(f_o(t) - f_{rf}\), \(f_r\) - (\(f_o(t) - f_{rf}\))~\cite{tutorialspoint}. An \textbf{Amplifier} amplified the differenced output of the Mixer, i.e. only \(f_r\) - \(f_o(t) + f_{rf}\) is amplified. The \textbf{Balance Detector} which is connected to both the Amplifier and the Local Oscillator computes the difference of the both input signals, hence generating a signal of frequency \(f_r - f_o(t)\). 
 This output is then inputted to \textbf{Low Frequency Amplifier} which amplifies the input frequency. This resultant signal is then called the Baseband signal ~\cite{tutorialspoint}. 
 
- \begin{figure}[ht]
-  \begin{center}
-    % below the size of the figure has been reduced for example
-    \includegraphics[width=0.80\textwidth]{Master's thesis/images/fmcw.png} 
-    \caption{Block Diagram for FMCW}
-    \label{fig:fmcw}
-  \end{center}
-\end{figure}   
 
 In order to understand the functionality of FMCW in better detail, we will divide the topic into 3 parts.
 \begin{itemize}
@@ -473,21 +470,30 @@ Now consider the \textbf{figure},it is pretty much evident that the two objects 
 If another FFT is applied on these phase differences, this give rise to an FFT sequence which is called \textbf{angle-FFT}. Angle FFT helps in resolving such two objects.
 
 
-\subsubsection{Micro Doppler}
+%\subsubsection{Micro Doppler}
 
 
 \subsection{RADAR Specifications}
 The RADAR used in this thesis has a carrier frequency of 24 Ghz. The Bandwidth of the frequency is 250 MHz and the sweep time is 1 ms.
-S. No.	Specification	Value
-1	Carrier Frequency	
-2	Bandwidth of 1 sweep	
-3	Sweep Time	
-4	Min sweep interval	
-5	Centre Angle	
-6	Max view distance 	14 m
+
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+\hline
+ S.No. & Specification & Value \\ 
+ \hline
+1 &	Carrier Frequency	& 24 Ghz \\
+2	& Bandwidth of 1 sweep	& 250 MHz\\
+3 &	Sweep Time	& 1 ms\\
+4 &	Min sweep interval	& ~16.7 ms\\
+5 &	Centre Angle & 210$^{\circ}$  \\
+6 &	Max view distance &	14 m \\
+ \hline
+\end{tabular}
+\end{center}
+
 		
-\section{Lighting Industry}
-\section{Machine Learning Literature Review}
+%\section{Lighting Industry}
+%\section{Machine Learning Literature Review}
 
 
 

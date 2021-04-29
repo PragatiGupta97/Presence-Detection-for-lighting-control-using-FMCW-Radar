@@ -1,18 +1,44 @@
 \chapter{Introduction}
 \label{chapter:intro}
-Presence detection has always been a hot topic in the industry. RGB cameras have proven to be quite accurate for detecting human presence. However, there are some limitations of using RGB in the indoor environments for industries like lighting industry. RGB camera hinders people’s privacy. People are usually not comfortable with the idea of a camera installed near them in order to track their activity. This is the main reason why RGB cameras cannot be used for indoor environments like offices.
+According to Wikipedia \say{Lighting applications represents 19\% of the world's energy use and 6\% of all greenhouse emissions. In the United States, 65 percent of energy consumption is used by commercial and industrial sectors, and 22 percent of this is used for lighting.}
+In European Union, the total domestic lighting usage is around 86 TWh and is predicted to increase much more in the coming years ~\cite{nieuweling_2016}.
+%everything about offices%
+Commercial Building are classified as the highest energy consumers. The total annual energy use in office buildings varies from 100 to 1000 kWh/m$^{2}$, depending parameters, such as, geographic location, use and type of office equipment, type of envelope, operational schedules, use of HVAC systems and type of lighting ~\cite{santamouris2002passive}. 
+In Northern Europe, office energy intensity lies in the range 269 to 350 kWh/m$^{2}$ yr and for offices all
+over Europe, it is about 306 kWh/m$^{2}$ yr ~\cite{dubois2011energy}.
+
+With the establishment of legislative frameworks like Energy Performance of Buildings Directive 2010/31/EU (EPBD) and the Energy Efficiency Directive 2012/27/EU, European Union places a high demand at better and more energy efficient buildings. The goal is to achieve a highly energy efficient and decarbonised building stock by 2050 ~\cite{fernbas_2021}.
+According to previous research, modern office buildings have a potential for energy savings at a magnum level. Electric lighting is one area where energy savings are possible at a reasonable cost in new buildings as well as in retrofit projects ~\cite{dubois2011energy}. Lighting is one of the most cost-effective ways to reduce CO$_2$ emissions.
+An effective way to address this energy problem is to deploy automatic lighting control systems. Automatic lighting controls are capable of reducing energy consumption by up to 50\% in existing buildings and by 35\% in new constructions~\cite{sarkar2008integrated}.
+
+A lighting control system is an intelligent network based solution that incorporates networking between various system inputs and outputs related to lighting control. The lighting control system is composed of networked system of devices which together satisfied the wholesome functionality. These devices may include occupancy sensors, photocells, imagers, cameras etc.  Lighting control systems serve to provide the right amount of light where and when it is needed. Intelligent lighting control not only includes automatic tun off and turn on of the luminaries as per the occupancy, but it also include automatic adjustment of the light intensity using dimmer. This dimming functionality along with daylight harvesting leads to huge energy cuttings. This basic functionality can be used to generate the benefits of flexibility to satisfy visual needs of the user and/or automation to improve energy efficiency and sustainability. Recently new dimensions have been added to lighting control systems - Well-being and Insights. 
+According to Helvar, their lighting control system enhances the well-being of the users, boosts the productivity and makes the users feel good. Lighting control system maintains the circadian rhythm and helps avoid the negative impacts of the dark season in cold countries like Finland. Many organisations have studied this field in recent years reported productivity gains are between 1.5-12 \% with intelligent lighting control systems ~\cite{helvar_wellbeing}.
 
 
-The solution which is common now a days for lighting industry is thermal sensing using Passive Infrared sensors (PIR). PIRs are low-cost sensors and they have low power requirements and simple installation procedure. The problem with PIR is, it cannot detect stationary people and their output is bursty. Due to this reason usually, a timer is associated with the PIR data. The timer is reset to 0 whenever there is a movement in the room. This means if the PIR sensors don’t track any activity for the past 10 minutes (as an example for chosen timer range), only then the lights turn off. This often leads to power wastage. Even though, PIR sensors are a sustainable solution for lighting control, there is still a high scope for improvement.
-
-This thesis is about lighting control using Radar Data, which tracks the human presence in the room. Unlike PIR, the range of the radar is huge, and one radar can offer as an alternate to numerous PIRs. Moreover, the radar data is fast and more reliable. The objective of this thesis is to measure true presence using radars, as compared to movement using PIRs. The objective will be achieved using Machine Learning classification models obtained from radar to make the machine understand about the human presence.
-
+%Presence Detection%
+The main and the foremost functionality of lighting control system is Presence/ Occupancy detection. Presence detection has always been one of the most discussed topic in the industry. Unfortunately, we still lack the technology able to accurately detect human presence, be it moving or stationary. The extensive use of data generating devices has given rise to data driven Machine Learning models for occupancy detection. This thesis is about effective presence detection using Machine Learning.
 
 \section{Problem statement}
 
+Presence detection has always been a hot topic in the industry. RGB cameras have proven to be quite accurate for detecting human presence. However, there are some limitations of using RGB in the indoor environments for industries like lighting industry. RGB camera hinders people's privacy. People are usually not comfortable with the idea of a camera installed near them in order to track their activity. This is the main reason why RGB cameras cannot be used for indoor environments like offices.
+
+The solution which is common is thermal sensing using Passive Infrared sensors (PIR). PIRs are low-cost sensors and they have low power requirements and simple installation procedure. The problem with PIR is, it cannot detect stationary people and their output is bursty. Due to this reason usually, a timer is associated with the PIR data. The timer is reset to 0 whenever there is a movement in the room. This means if the PIR sensors don\textquotesingle t track any activity for the past 5 minutes (as an example for chosen timer range), only then the lights turn off. This often leads to power wastage. Even though, PIR sensors are a sustainable solution for lighting control, there is still a high scope for improvement.
+
+There are many other solutions proposed by the researchers in the last two decades for intelligent solution like presence detection with CO$_{2}$ monitoring, using pressure sensors, ultrasounds, range finders, Wi-Fi, energy traces,  etc, the details of which are provided in the Chapter 2. However, the problem still remains of efficiency and commercialising these solutions in the buildings or office spaces. Many of these solutions are not standalone i.e, they are not operational without workstations and cannot be embedded as edge devices, while some pose a threat to breach of personal privacy. Some of the solutions are extremely expensive to be deployed for lighting control, while some solutions are hard to scale and integrate with existing solutions. Moreover, other limitation of present occupancy detection includes reliance on a single occupancy sensor in a zone under control, a lack of data analysis of the measured sensor signals, and unnecessary switching ~\cite{dodier2006building}.
+ 
+
+This thesis is about lighting control using Frequency Modulated Continuous Wave (FMCW) Radar Data, which tracks the human presence in the room. 
+Unlike PIR, the range of the radar is huge, and one radar can offer as an alternate to numerous PIRs. Moreover, the radar data is fast and more reliable. The objective of this thesis is 
+\begin{itemize}
+    \item To measure true presence detection using FMCW radars with Machine Learning classification models. This detection should be real time, fast, reliable and accurate than the the existing solutions.
+    \item To analyse if FMCW Radars can act as a substitute to traditional PIRs in a commercial scenario. FMCW is expensive than PIRS, however it is a replacement to multiple PIRs. The target motive is to reduce the number of False Negatives and False Positives of the traditional PIRs, i.e, reducing the cases where the person is sitting in the space, and still the PIRs indicate no presence and reducing the cases where the person is no there and still the PIRs detect presence. It is worth noticing that in case of PIRs False Negatives is the main problem as it does not detect stationary humans. 
+    \item The third and very important goal of the thesis is to build a generalized model for presence detection. This means that the model generated should work for all scenarios, i.e, the same model may be used for all the meeting rooms, for all the cafeterias or for all the open areas. This is because for a simple scenario like lighting control retraining the model as per different environment makes less of a sense. One model for presence detection should work for all the scenarios.
+    \item a scalable model
+    \item \textbf{More objectives can be added later as per the timeline}
+\end{itemize}.
 
 
-
+% about ML%
 \section{Structure of the Thesis}
 \label{section:structure} 
 

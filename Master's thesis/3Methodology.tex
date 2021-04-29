@@ -2,12 +2,26 @@
 \label{chapter:methodology}
 This thesis will be focused mainly on classification problem of the “human presence” i.e. if the human is present or not. This will be a supervised learning problem where the features will be mapped to the classes/labels.
 For this thesis, we are using VTT built 25 GHz radar along with Raspberry pi. The methodology includes Data collection, Data cleaning, Model Building and Model deployment. Here is a flow, how the process will be conducted in the upcoming months.
-1. Radar provides Analog to Digital converted signal. However, this information is not sufficient to distinguish between human presence or absence. Therefore, in order to detect human presence i.e. to collect the labels for the data, we will be using RGB camera for the purpose of creating ground truth. Radar data will be mapped with RGB presence detection based on each time frame.
-2. The data obtained will be feature engineered using multiple techniques.
-3. The idea is engineer the received radar signal of every time frame to a 2-D map and then treating this 2-D map as an image or set of features.
-4. Deep Neural Networks or other Machine Learning techniques will be applied on this already processed data.
-5. For the purpose of training, we will leverage the cloud resources by AWS.
-6. The last step is to deploy these models on the edge devices.
+
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=1\textwidth]{Master's thesis/images/thesis_presentation.png} 
+    \caption{Overall Process}
+    \label{fig:basic_principle}
+  \end{center}
+\end{figure}
+
+
+\begin{enumerate}
+    \item Radar provides Analog to Digital converted signal. However, this information is not sufficient to distinguish between human presence or absence. Therefore, in order to detect human presence i.e. to collect the labels for the data, we will be using RGB camera for the purpose of creating ground truth. Radar data will be mapped with RGB presence detection based on each time frame.
+    \item The data obtained will be feature engineered using multiple techniques.
+    \item The idea is engineer the received radar signal of every time frame to a 2-D map and then treating this 2-D map as an image or set of features.
+    \item Deep Neural Networks or other Machine Learning techniques will be applied on this already processed data.
+    \item For the purpose of training, we will leverage the cloud resources by AWS.
+    \item The last step is to deploy these models on the edge devices.
+\end{enumerate}
+
 The ultimate objective is to create a more sustainable lighting control solution. Currently at Helvar, the most effective control system turns off the luminaires after 10 min of human absence. Even if, we are able to bring down these power wasteful windows by 50pc, it would make huge impact on the society. Not only it will contribute to sustainability but will also result in lower power consumption and therefore less electricity bills. Lastly, it will add a lot of business value to Helvar as a company.
 
 
