@@ -104,10 +104,6 @@ In ~\cite{zhou2006detection}, Zhou et al. used a system which analysed the Doppl
 
 The ability of the RADARs to penetrate objects like wall, make them less likely to be used for occupancy detection inside the room. For instance Falconer, D. G., et al.~\cite{falconer2000robot} demonstrated a robot mounted motion detection RADAR which is suitable for operations even through the wall( gypsum board walls or hardwood walls). Time domain and frequency domain signals are captured to detect not only the human occupancy but also human's particular activity like resting, walking, talking.
 
-
-
-\\
-
 \section{RADAR technology}
 RAdio Detection And Ranging is an electromagnetic range finder device that observed the echoed signals by their time delays.  The RADAR can operate in the radio or in the microwave domain. 
 It is used for various applications on ground, on sea and in space. The applications of RADARs are controlling the Air Traffic, Ship safety, Sensing the remote places, Military applications etc~\cite{RADAR}.
@@ -220,7 +216,7 @@ To compute the range, velocity or phase of the object, the most important factor
 Figure ~\ref{fig:fmcw} explains in detail on how this Baseband signal is produced. 
 The \textbf{Frequency Modulator} produces a modulated frequency signal TX which is transmitted using \textbf{Transmitter}. The \textbf{Local Oscillator} produces a signal having Radio Frequency \(f_{rf}\). The output of the Local Oscillator is then feeded to a mixer along with the output of the Transmitter. The \textbf{Mixer} computes then sum and the difference of the Transmitted frequency and the RF signal from Local Oscillator. A low pass filter then only allows the lower frequency to be passed i.e. only the difference of the Transmitter and the RF signal \(f_o(t) - f_{rf}\) is allowed. ~\cite{tutorialspoint}. 
 
-Another \textbf{Mixer}, is feeded the received signal from the receiving antenna \(f_r\) and the output of the low pass filter. It is worth mentioning that the received signal RX is just a delayed version of the transmitted signal TX. It then computes the sum and the difference of these signals again, i.e. \(f_r\) + \(f_o(t) - f_{rf}\), \(f_r\) - (\(f_o(t) - f_{rf}\))~\cite{tutorialspoint}. An \textbf{Amplifier} amplified the differenced output of the Mixer, i.e. only \(f_r\) - \(f_o(t) + f_{rf}\) is amplified. The \textbf{Balance Detector} which is connected to both the Amplifier and the Local Oscillator computes the difference of the both input signals, hence generating a signal of frequency \(f_r - f_o(t)\). 
+Another \textbf{Mixer}, is feeded the received signal from the receiving antenna \(f_r\) and the output of the low pass filter. It is worth mentioning that the received signal RX is just a delayed version of the transmitted signal TX. It then computes the sum and the difference of these signals again, i.e. \(f_r\) + \(f_o(t) - f_{rf}\), \(f_r\) - (\(f_o(t) - f_{rf}\))~\cite{tutorialspoint}. An \textbf{Amplifier} amplifies the differenced output of the Mixer, i.e. only \(f_r\) - \(f_o(t) + f_{rf}\) is amplified. The \textbf{Balance Detector} which is connected to both the Amplifier and the Local Oscillator computes the difference of the both input signals, hence generating a signal of frequency \(f_r - f_o(t)\). 
 This output is then inputted to \textbf{Low Frequency Amplifier} which amplifies the input frequency. This resultant signal is then called the Baseband signal ~\cite{tutorialspoint}. 
 
 
@@ -230,7 +226,6 @@ In order to understand the functionality of FMCW in better detail, we will divid
     \item Part 2: Evaluation of velocity of the target object.
     \item Part 3: Evaluation of phase of the target object.
 \end{itemize}
-\\
 
 \subsection{Signal Processing for FMCW}
 The Baseband signal is constructed by the Radar when an object reflects the signals. However in a real scenario, there are multiple objects in the scene resulting in multiple Baseband signals. Therefore Radar receives combination of these Baseband signals. To differentiate different objects, Radar should be able to differentiate between different signals. To do so, Radar uses Fourier Transformations. A brief summary of Fourier Transformations is provided in the following subsection.
@@ -266,7 +261,7 @@ However, in a real time scenario, signals are not continuous, rather discrete. T
 The output of the DFT has the same size as input. For a device like Radar where the frequency of the signal is usually in GHz, the sampling index is huge, therefore the number of outputs of DFT will be huge. Increasing the number of inputs, increased the computation power by $O[N^2]$.
 \\
 
-Therefore, to the computations less complex, the number of samples are chosen as a power of $2^N$ which enables to use Fast Fourier Transform (FFT) instead of DFT. The complexity of FFT is $O[NlogN]$ instead of $O[N^2]$. FFT can be used either by increasing the sampling rate or by appending zeros at the end before performing FFT. Zero padding makes the resolution between two consecutive bins easier.
+Therefore, to make the computations less complex, the number of samples are chosen as a power of $2^N$ which enables to use Fast Fourier Transform (FFT) instead of DFT. The complexity of FFT is $O[NlogN]$ instead of $O[N^2]$. FFT can be used either by increasing the sampling rate or by appending zeros at the end before performing FFT. Zero padding makes the resolution between two consecutive bins easier.
 
 It is worth mentioning that the resolution of the FFT increases with the length of the observation period. In general, an observation window if T can separate frequency components that are separated by more than $\frac{1}{T}$ Hz~\cite{rao_2017}.
 %windowing%
@@ -352,7 +347,7 @@ This means we an increase or decrease the maximum field of view range by changin
 
 
 \subsubsection{Velocity Evaluation for Moving targets}
-According to section~\ref{sec:rangeEval}, to separate different objects in the view, Range FFT is applied on the received RX signal. However the question to ask here is "\textit{How can the two objects placed at same radial distance from FMCW can be separated?}"~\cite{rao_2017}. The FFT of the two objects placed at same distance will give peak bins at the same frequency. However doing further signal, this problem can be resolved using the velocities of these object which are at same distance.
+According to section~\ref{sec:rangeEval}, to separate different objects in the view, Range FFT is applied on the received RX signal. However the question to ask here is "\textit{How can the two objects placed at same radial distance from FMCW can be separated?}"~\cite{rao_2017}. The FFT of the two objects placed at same distance will give peak bins at the same frequency. However doing further signal, this problem can be resolved using the velocities of these object which are at same distance. It is to be noted that these objects can be differentiated if the velocities of these objects are different.
 
 To solve this problem, Fourier Transformation comes into the picture. However instead of doing Range FFT, \textbf{Doppler FFT} is used.
 
@@ -476,6 +471,19 @@ If another FFT is applied on these phase differences, this give rise to an FFT s
 \subsection{RADAR Specifications}
 The RADAR used in this thesis has a carrier frequency of 24 Ghz. The Bandwidth of the frequency is 250 MHz and the sweep time is 1 ms.
 
+Specify about antennas and receivers
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[scale = 0.08]{Master's thesis/images/Radar_internal.jpg} 
+    \caption{Internal details of the RADAR}
+    \label{fig:AoA}
+  \end{center}
+\end{figure}  
+
+
+
+
 \begin{center}
 \begin{tabular}{ |c|c|c| }
 \hline
@@ -491,7 +499,84 @@ The RADAR used in this thesis has a carrier frequency of 24 Ghz. The Bandwidth o
 \end{tabular}
 \end{center}
 
-		
+\section{Artificial Intelligence}
+Artificial intelligence (AI) is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals, which involves consciousness and emotionality. 'Strong' AI is usually labelled as artificial general intelligence (AGI) while attempts to emulate 'natural' intelligence have been called artificial biological intelligence (ABI) ~\cite{poole1998computational} .
+There are numerous ways to define Artificial Intelligence (AI) as there are many controversial discussions about the definition of human intelligence. On a broader level, the AI is an umbrella term for any hardware or software that enables a machine to mimic human intelligence. AI should be adaptive and, in many cases, autonomous as well ~\cite{touger2020}.
+\subsection{Machine Learning}
+
+Machine Learning (ML) is a subset of AI. It is the study of computer algorithms that improve automatically through experience and by the use of data ~\cite{mitchell1997machine}. With the help of Mathematics, Statistics and Probability, the machines can learn from the data and then can make decision on the new unseen data. ML allows to automatically extract relevant information from data applying it to analyze new data.
+There are several machine learning methods. Different methods can be tested to determine the best option for a certain problem. The ML algorithms are classified into supervised , unsupervised learning and Reinforcement Learning algorithms.
+\newline
+
+\noindent \textbf{Supervised Learning}
+\newline
+
+\noindent In Supervised learning, the goal is to estimate the unknown model that maps known inputs to known outputs. The data-set, in that case, has defined targets or labels that are pre-determined. The problem can be classification, Regression or Probability estimation. Training set can be defined in the form \( D = {<x,t>} => t = f(x)  \) where D is the dataset, x is the feature vector, t is the target variable. Numerous algorithms are used for supervised learning like Support Vector Machines, Decision Tree, K-Nearest Neighbors, Naive Bayes etc. 
+\newline
+
+\noindent \textbf{Unsupervised Learning}
+\newline
+
+\noindent On the contrary, In Unsupervised learning, the goal is learning a more efficient representation of a set of unknown inputs. Here the expected targets are not
+provided to the algorithm. Therefore, the algorithm has to learn some patterns in the data without any supervision or prior knowledge of what the data-set might be about.  Training set can be defined in the form \( D = {x} => ? = f(x) \) where D is the dataset, x is the feature vector, ? is the unknown representation. The most common problems in unsupervised learning includes Clustering and Compression. Numerous algorithms are used for unsupervised learning like K-Means, Self organizing maps, Principal Component Analysis etc.
+\newline
+
+\noindent \textbf{Reinforcement Learning}
+\newline
+
+\noindent Reinforcement learning is an area of Machine Learning which is about deciding the best suitable action to maximize reward in a particular situation. It is used in many software and machines to find the best possible behavior or path it should take in a specific situation. Reinforcement learning differs from the supervised learning as in the later, the training data has the correct label with it so the model is trained with the correct answer itself whereas in the former, there is no answer but the reinforcement agent decides what to do to perform the given task. In the absence of a training dataset, it is bound to learn from its experience \cite{geeksforgeeks_2020}.
+
+
+
+
+The main challenge with Machine Learning is that it is supposed to perform efficiently on new, unseen data. In order to verify of the Machine Learning models performs well on the new data, usually the dataset is divided into training and test set. The model is trained on training data. No where in the training process, the test data set is involved. A good model should give high performance on test data set along with the train data set. This feature is called generalization.The generalization error i.e test error must be minimized. The trained model’s performance is tested with the
+test set to measure generalization error. If there is high performance on train dataset and low performance on test dataset, the model is said to have over fitted the train set, or simply it has just learned the train set.
+
+Some of the factors that determine the performance of the ML include the training error, test error and the gap between them. More detailed information about train set and test set performance is provided in the next section.
+
+\subsection{Deep Learning}
+Machine Learning tasks can be solved by designing the right set of features to extract. One can use the domain knowledge to design features that are robust. While the domain knowledge works perfectly fine for most the cases like the cases where features can be numerically or quantitatively explained, however problem arises for situation like images, videos or text. For such tasks, it is difficult to known what features should be extracted. It maybe possible to extract the features in image context with the algorithms that considers intensity and change in intensity with respect to pixels. However most of the times, these features are not perfect and eventually forces the researcher to reiterate the feature extraction phase.
+
+These problems can be solved with Representation learning, i.e, we use Machine Learning not only to predict the mapping of the representation, but also the representation itself.Deep learning is a subset of Machine Learning based on artificial neural networks which learns the representations.
+Deep learning solves the central problem in representation learning by introducing representations that are expressed in terms of other, simpler representations. Deep learning enables the computer to build complex concepts out of simpler concepts ~\cite{Goodfellow-et-al-2016}.  
+
+Deep Neural Networks is a supervised learning approach of a deep network of processors called neurons.
+A neuron originally is a biological term for a fundamental unit of the brain. The
+neuron is designed to pass electrochemical signals to the other neurons and to other parts
+of the brain ~\cite{Goodfellow-et-al-2016}. The architecture of the artificial neural network is inspired by the brain's neural networks.
+The neural network processors receive and transmit signals between each other. The
+neurons store and process information in the connections between the neurons which are
+called weights. The weights are multipliers on the inputs of the neuron.
+\newline
+
+\noindent \textbf{Neural Networks}
+\newline
+
+\noindent The Deep Neural Networks are composed of layers. Each layer further is composed of several neurons. The input layer or the first layer of the network get their inputs directly from the data. For
+example, in the case of an image, the input layer consists of all the pixels values of the image. The rest of the layers of the network (hidden layers) use the previous layer's outputs as their input and feed their produced output to the proceeding layer. The final layer is called the output layer which is used for delivering the output of the whole neural network.
+The depth of the deep learning system enables the computer to learn a hierarchical program. Each layer has some instructions
+that are executed in parallel. Instructions in different layers are executed sequentially
+in the order of the layers. There is state information that is similar to the pointer in a
+traditional computer program. The state information is stored in the representation of the neural network
+
+
+
+\noindent \textbf{Training Neural Networks}
+
+\noindent\textbf{Regularization}
+
+\noindent \textbf{Hyper-parameter Tuning}
+
+\noindent \textbf{Feedforward Neural Networks}
+
+\noindent \textbf{Convolutional Neural Networks}
+
+\noindent \textbf{Structure of a Convolutional Layer}
+
+\noindent \textbf{Parameters of a Convolutional Layer}
+
+
+
 %\section{Lighting Industry}
 %\section{Machine Learning Literature Review}
 
