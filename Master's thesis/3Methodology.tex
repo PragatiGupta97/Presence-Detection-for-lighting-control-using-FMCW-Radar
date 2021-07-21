@@ -85,6 +85,14 @@ For this thesis, Deep Learning Base AMI Ubuntu instance of type p2.xlarge is use
 \label{Computing on Cloud for RGB Data}
 
 The data collected from RGB data which is stored in S3 buckets can be directly accessed from EC2 instance as both the instance and the bucket are present in the same AWS region.  For this project a hybrid of  two techniques are used for object detection on the RGB data collected. 
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=0.5\textwidth]{Master's thesis/images/equipment.jpg} 
+    \caption{RADAR and Camera}
+    \label{fig:AoA}
+  \end{center}
+\end{figure}  
 \begin{enumerate}
     \item \textbf{YOLOv3} - YOLOv3 is chosen because it is extremely fast and accurate. The mAP of YOLOv3 is measured at .5 IOU  which is on par with Focal Loss but about 4x faster. YOLOv3 uses a few tricks to improve training and increase performance, including multi-scale predictions, a better backbone classifier, and more ~\cite{yolo_time}. YOLOv3 returns output in the form of pre defined 80 classes on which the model is trained. Here in this thesis, only person class is a matter of interest. In order to detect only human, the detection class of the YOLOv3 model has been manipulated.
     \item \textbf{Motion Detection} - This technique is used to detect motion in a scene. It is used because sometimes it is possible for a person to be occluded in the video. For an instance, consider a person half occluded behind the desktop monitor, or a scenario where there is only hand moving in front of camera, or where someone is half visible behind the door, for such scenarios YOLOv3 will fail because there are a lot of occlusions present in the same. Therefore for such cases, motion detection algorithm is used on the RGB camera data. When the movement is beyond a fix threshold, only then the algorithm returns presence, otherwise it ignores small movements, for e.g.., movement due to curtains or leaves of the plants are ignored. The approach is very simple and self intuitive. When the program starts, it will capture a called baseline image. The program will keep comparing the new frame with this baseline image. If there is a movement in the new frame, the contents of the image will be different and if this difference is beyond a certain threshold,  the program will return Presence.
@@ -94,15 +102,8 @@ Once the data is cleaned into AWS, YOLOv3 and  Motion Detector are run on the RG
 
 After using this pipeline, the labels corresponding to every second of RADAR data is ready. Its worth noticing that there might be some inaccuracies in the labelling because of the difference in the angle of view. 
 
-\subsection{Transformations on RADAR Data}
-\begin{figure}[ht]
-  \begin{center}
-    % below the size of the figure has been reduced for example
-    \includegraphics[width=0.5\textwidth]{Master's thesis/images/equipment.jpg} 
-    \caption{RADAR and Camera}
-    \label{fig:AoA}
-  \end{center}
-\end{figure}  
+\section{Transformations and Data visualization of RADAR Data}
+
 In the previous section, we talked about how the pipelines are arranged for the proper flow of data. In this section, we will talk about how the data is arranged for the machine learning model to work efficiently. This section will also explain the operations and transformations done on the data. In addition to that, we will see exploratory data analysis done on the radar data.
 
 The data from FMCW RADAR is generated in the form of chirps/sweeps. According to the hardware configuration of the RADAR used in this thesis, it generated 497 samples in one chirp. Since the RADAR have two receiver antennas, it generates 497 per antenna in 1 chirp. RADAR generates 1 chirp is approximately 31.25 ms, although the time may vary in fractions of milliseconds. This means the RADAR generates approximately 32 samples in 1 second. On the other hand, the RGB camera operates at 60 fps. In order to overlap the data and make an effective labelling, the data from 32 chirps of RADAR is combined together to make a combined signal of 1 second. Alternately, it can be imagined that one instance of data for our Machine Learning/Deep Learning model corresponds to 1 sec of data, i.e. 32 sweeps from the RADAR and 60 frames of camera are mapped together. Therefore the data signature of the RADAR of 1 second can be imagined as a 3D matrix where first dimension corresponds to antenna number, second dimension corresponds to chirp number and the third dimension corresponds to Time. The value of cell is the actual amplitude of the signal. Timestamping is used for mapping of RADAR and RGB camera data. These 1 second videos of RGB camera when fed to YOLOv3 and Motion detector model, as explained in the previous subsection \ref{Computing on Cloud for RGB Data}, generates output in the form of True/False. 
@@ -148,22 +149,18 @@ Once the Blackman windowing is applied to raw data, FFT of the data is computed.
   \end{center}
 \end{figure} 
 Fig. \ref{fig:FFT_3d1a} represents a 3 dimensional view of Range FFT data. A comparison of the Range FFT signal for human presence and absence is done in the figure. It is worth mentioning that the plot indicates the Range FFT output of only one antenna. Similar signal is obtained from the another antenna as well. 
-It is very evident from the plots that in the scenario when there was no human, the signal remain constant over chirps. However when there was human movement involved, the signal varies over chips.
+It is very evident from the plots that in the scenario when there was no human, the signal remain constant over chirps. However when there was human movement involved, the signal varies over chips. Every plot corresponds to 1 second of data. It i worth noticing that the y axis which corresponds to chirp index ranges from 0 to 32, and the Range axis also ranges from 0 to 32 on the x axis.
 
 \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
     \includegraphics[width=1\textwidth]{Master's thesis/images/4d_fft.PNG} 
-    \caption{Range FFT on random randomly sampled RADAR data}
+    \caption{Range FFT comparison for human presence and absence with both receiver antenna}
     \label{fig:FFT_4d2a}
   \end{center}
 \end{figure}   
 
-To visualize this scenario even better, a 4 dimensional plot is drawn involving 2 antennas in Fig. \ref{fig:FFT_4d2a}. The color in the plots indicates the amplitude intensity. Yellow color corresponds to higher amplitude values and blue corresponds to lower amplitude values. It is evident in the plots that the amplitude values of the two antennas are always comparable in quantification. It can be seen in this plot as well that in the scenario of human absence, the amplitude of the signal remains constant across chirps. Comparatively in the human presence scenario, a distinctive smudge can be observed across chirps. This also comes by intuition that when the human movement in involved, a human body, which is a collection of points, is at different distance from the RADAR. It is important to note that the distance from one antenna is of course different than the distance from another antenna, but the difference is diminutive. 
-
-
-
-
+To visualize this scenario even better, a 4 dimensional plot is drawn involving 2 antennas in Fig. \ref{fig:FFT_4d2a}. The color in the plots indicates the amplitude intensity. Yellow color corresponds to higher amplitude values and blue corresponds to lower amplitude values. It is evident in the plots that the amplitude values of the two antennas are always comparable in quantification. It can be seen in this plot as well that in the scenario of human absence, the amplitude of the signal remains constant across chirps. Comparatively in the human presence scenario, a distinctive smudge can be observed across chirps. This also comes by intuition that when the human movement in involved, a human body, which is a collection of points, is at different distance from the RADAR. It is important to note that the distance from one antenna is of course different than the distance from another antenna, but the difference is diminutive as the antennas are placed in close proximity.
 \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
@@ -172,5 +169,37 @@ To visualize this scenario even better, a 4 dimensional plot is drawn involving 
     \label{fig:FFT_plot}
   \end{center}
 \end{figure}  
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=01\textwidth]{Master's thesis/images/ff_bar.png} 
+    \caption{Amplitude vs Range Bar Chart for both the antennas where Amplitude is the mean value within 1 chirp}
+    \label{fig:FFT_bar}
+  \end{center}
+\end{figure}
+In Fig. \ref{fig:FFT_plot}, random instances of the Range FFT are sampled to display how data from Range FFT looks like. The subplots indicates presence and absence scenario. The plot indicates results from only one antenna as the interpretation is much easier for one antenna. The other antenna gets the same results. The important thing to notice here is that, these plots are obtained from different locations, i.e, from meeting rooms, from open office and from desk premise. This fact is evident from the plot itself. For e.g. highest intensity does not remain in the same range. For some scenarios the highest intensity bins are generated by objects closer to the RADAR, while in some scenarios, the highest intensity bins are generated by objects far from RADAR. Additionally we can observe the smudge in the Range FFT which we discussed above can be seen clearly. The smudge can be seen in all the human presence scenarios irrespective of where the data was collected. 
 
-Random instances of the Range FFT are sampled. Fig. \ref{fig:FFT_plot} shows how data from Range FFT looks like. Every plot corresponds to 1 second of data. It i worth noticing that the y axis which corresponds to chirp index ranges from 0 to 32, and the Range axis also ranges from 0 to 32 on the x axis. 
+To analyze it even further, the bar plot is drawn by taking the average value per chirp which can be seen in Fig. \ref{fig:FFT_bar}. Every chirp will give one mean amplitude value, giving rise to 32 mean amplitude values corresponding to 32 chirps. This is done for both the RX antennas. The objective behind this plot is to analyze if the mean value stays constant over chirps in absence scenario and vary over chirps in present scenario. Result can be interpreted clearly in the absence scenario (indicated by False), where the mean amplitude value remains constant for both the antennas. This result is very intuitive as there is no movement, so all the chirps gets the same signal.
+
+Deep learning models were tried on Range FFT data. However the model prediction was not highly accurate. One reason could be significant difference in amplitude in different scenarios. The amplitude differs a lot based on the range, and range of objects varies from scenario to scenario. Therefore the Range FFT can not be used directly for ML models. Another reason is the scenario when there is little movement across chirp. The gradient is so less that the Machine Learning model assumes small movement as a background noise. There more transformation is required to capture these small movements and thus increasing SNR.
+
+As explained in subsection \ref{Signal Processing for FMCW}, the Range FFT was further converted from $Range\times Amplitude$ to $Range\times Velocity$ using another Fourier Transformation. This transformation is called \textbf{Range-Doppler FFT} since Doppler FFT is applied on Range FFT. As explained earlier, Fourier Transformation converts the Chirp index into Velocity. \textbf{The advantage of using Doppler FFT is that}. It is worth noting that in case of absence scenario, all the values in the Range Velocity matrix will be zero or near to zero as there is no movement in the scene.
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=1\textwidth]{Master's thesis/images/2ndFFT.PNG} 
+    \caption{Range FFT comparison for human presence and absence with one receiver antenna}
+    \label{fig:rdFFT_3d1a}
+  \end{center}
+\end{figure} 
+Fig. \ref{fig:FFT_3d1a} represents a 3 dimensional view of Range FFT data. A comparison of the Range FFT signal for human presence and absence is done in the figure. It is worth mentioning that the plot indicates the Range FFT output of only one antenna. Similar signal is obtained from the another antenna as well. 
+It is very evident from the plots that in the scenario when there was no human, the signal remain constant over chirps. However when there was human movement involved, the signal varies over chips. Every plot corresponds to 1 second of data. It i worth noticing that the y axis which corresponds to chirp index ranges from 0 to 32, and the Range axis also ranges from 0 to 32 on the x axis.
+
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=1\textwidth]{Master's thesis/images/4d_rdfft.PNG} 
+    \caption{Range FFT comparison for human presence and absence with one receiver antenna}
+    \label{fig:rdFFT_4d2a}
+  \end{center}
+\end{figure} 
