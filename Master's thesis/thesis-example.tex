@@ -261,9 +261,9 @@
 % You can just fix the texts there. Just remember to check all the language
 % variants you use (they are all there in the same place). 
 % ------------------------------------------------------------------
-\newcommand{\TITLE}{Presence detection for lighting control with ML models using RADAR data}
+\newcommand{\TITLE}{Presence detection for lighting control with ML models using RADAR data in an indoor environment}
 
-\newcommand{\SUBTITLE}{in an indoor environment}
+%\newcommand{\SUBTITLE}{}
 
 \newcommand{\DATE}{April 06, 2021}
 
@@ -331,7 +331,8 @@ yrkesutövare, intresseföretag, verifieringskedja}
 
 % Currently the English versions are used for the PDF file metadata
 % Set the PDF title
-\hypersetup{pdftitle={\TITLE\ \SUBTITLE}}
+\hypersetup{pdftitle={\TITLE}}
+%\hypersetup{pdftitle={\TITLE\ \SUBTITLE}}
 % Set the PDF author
 \hypersetup{pdfauthor={\AUTHOR}}
 % Set the PDF keywords
@@ -427,13 +428,13 @@ information.
 % The star means that the chapter isn't numbered and does not 
 % show up in the TOC
 \chapter*{Acknowledgements}
-I would like to thank Prof. Arno Solin, Prof. Munel Roveri and Nasir Omar for supervising me with this thesis project and their incessant guidance.
+I would like to thank Prof.~Arno Solin, Prof.~Munel Roveri and Nasir Omar for supervising me with this thesis project and their incessant guidance.
 
-I wish to express my sincere appreciation to my supervisors, Professor Arno Solin and Professor Munel Roveri for guiding me and encouraging me for writing professionally. 
+I wish to express my sincere appreciation to my supervisors, Prof.~Arno Solin and Prof.~Munel Roveri for guiding me and encouraging me for writing professionally. 
 
 Foremost, I would like to express my gratitude to Nasir Omar and Henri Juslen for seeing a potential in me and giving me chance to work with Helvar. I am grateful to Nasir for guiding me throughout the span of the thesis in all the domains-technical, organizational and professional. I would also like to thank the wonderful team of Helvar for being so supportive and so helpful to me.
 
-This research is dedicated to my father Dr. Pawan Gupta for imbibing within me the crucial element of girl power from the very beginning. Coming from a small town in India, where there is still a huge difference based on gender, I would like to thank him for giving me the wings to fly. 
+This research is dedicated to my father Dr.~Pawan Gupta for imbibing within me the crucial element of girl power from the very beginning. Coming from a small town in India, where there is still a huge difference based on gender, I would like to thank him for giving me the wings to fly. 
 
 
  
@@ -507,7 +508,8 @@ This research is dedicated to my father Dr. Pawan Gupta for imbibing within me t
 % ------------------------------------------------------------------
 % You can use several .bib files:
 % \bibliography{thesis_sources,ietf_sources}
-\bibliography{sources}
+\addcontentsline{toc}{chapter}{References}
+\bibliography{source_file}
 
 
 % Appendices go here

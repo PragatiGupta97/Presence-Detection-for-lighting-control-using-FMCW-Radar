@@ -1,64 +1,65 @@
-\chapter{Background and Literature Review}
+\chapter{Background}
 \label{chapter:background} 
+In this chapter, a discussion of the literature related to the applications of presence detection will be discussed. In addition, background information of the fundamental concepts that underlie this thesis research will be addressed as well. The concepts include  RADAR  technology and Artificial Intelligence.
 
-Human Detection can be conducted using a variety of methods, such as, Passive Infrared Sensors (PIR's), Pressure sensors, Thermal Imaging, Infrared Cameras, Video Cameras, Carbon dioxide concentration, and Range Finders like RADAR, Sonar and Lidar.
 
 \section{Previous Study}
+Human Detection can be conducted using a variety of methods, such as, Passive Infrared Sensors (PIRs), Pressure sensors, Thermal Imaging, Infrared Cameras, Video Cameras, Carbon dioxide concentration, and Range Finders like RADAR, SONAR and LiDAR.
+
 \subsection{Cameras and Imagers}
 In comparison to other sensors, Cameras are relatively affordable, easy to access, provides reliable, high resolution and easy to interpret information. This is why computer vision has always been a hot topic of the industry.
 \\
 
-Sarkar, A, et al.~\cite{sarkar2008integrated} used a high dynamic range CMOS video camera sensors for occupancy sensing and other functionalities like daylight estimation and lighting control. The sensors provides luminance along with the color information. The sensor has the capability of detecting small movements several feet away from the camera as long as it has an adequate resolution. However the system has some feasibility issues like occupancy detection in a region of total darkness. Also the system can not act as a standalone system, it needs to be setup with a workstation.
+Sarkar et al.~\cite{sarkar2008integrated} used a high dynamic range CMOS video camera sensors for occupancy sensing and other functionalities like daylight estimation and lighting control. The sensors provides luminance along with the color information. The sensor has the capability of detecting small movements several feet away from the camera as long as it has an adequate resolution. However the system has some feasibility issues like occupancy detection in a region of total darkness. Also the system can not act as a standalone system, it needs to be setup with a workstation.
 
-Shih, Huang-Chia.~\cite{shih2014robust} addressed to the problem of occupancy detection and people  tracking using image-based depth sensor and a programmable pan-tilt-zoom (PTZ) camera.
-The system detects the movement even under the the dim lighting scenarios. The system uses -support Vector Machine (SVM) which is a non parametric Machine Learning algorithm. The depth image sensor enables the countour information of the occupant for better activity recognition. The system combines a vision based and sensor based cameras, in order to fill the gap between the subjective sensing of people and system control parameters. 
+Shih, Huang-Chia ~\cite{shih2014robust} addressed to the problem of occupancy detection and people  tracking using image-based depth sensor and a programmable pan-tilt-zoom (PTZ) camera.
+The system detects the movement even under the the dim lighting scenarios. The system uses Support Vector Machine (SVM) which is a non parametric Machine Learning algorithm. The depth image sensor enables the countour information of the occupant for better activity recognition. The system combines a vision based and sensor based cameras, in order to fill the gap between the subjective sensing of people and system control parameters. 
 However this approach is not suitable for working spaces as people might not be comfortable with surveillance cameras mounted near them.
 \\
 
-Mikkilineni, Aravind K., et al.~\cite{mikkilineni2019novel} proposed a novel occupancy sensing method which will enable temporal minimization of building energy consumption without privacy concerns, based long-wave infra-red (LWIR) focal-plane arrays (FPAs), or thermal imagers, that detect thermal energy rather than visible light. The solution captures the energy and creates an image whose pixel represents the temperature.  The paper used computer vision based techniques to overcome the accuracy issues suffered by traditional PIR based sensing, especially when the person is still. The paper provides the solution for multiple people tracking and counting at the same time, while addressing to the problem of breach of privacy with normal cameras.
+Mikkilineni et al.~\cite{mikkilineni2019novel} proposed a novel occupancy sensing method which will enable temporal minimization of building energy consumption without privacy concerns, based long-wave infra-red (LWIR) focal-plane arrays (FPAs), or thermal imagers, that detect thermal energy rather than visible light. The solution captures the energy and creates an image whose pixel represents the temperature.  The paper used computer vision based techniques to overcome the accuracy issues suffered by traditional PIR based sensing, especially when the person is still. The paper provides the solution for multiple people tracking and counting at the same time, while addressing to the problem of breach of privacy with normal cameras.
 \\
 
-With the advancement of Computer Vision and Deep Neural Networks, occupancy detection using RGB cameras has become quite mundane. However for the purpose of lighting industry, the use of RBG cameras is quite plagued with a lot of loopholes. The first and foremost problem is the privacy infringement. It is against the privacy regulations to record people's activity in the working offices to regulate lighting. The second problem of using RGB cameras is, despite giving the solutions real time, it needs a lot of computational power. Processing the video and then feeding it to a neural network is difficult to be solved using embedded devices. Signal Processing of cameras is more difficult than signals from other sensors.  This is the reason why the cameras or the imagers are not used in the lighting industry which is highly performance driven. 
+With the advancement of Computer Vision and Deep Neural Networks, occupancy detection using RGB cameras has become quite mundane. However for the purpose of lighting industry, the use of RGB cameras is quite plagued with a lot of loopholes. The first and foremost problem is the privacy infringement. It is against the privacy regulations to record people's activity in the working offices to regulate lighting. The second problem of using RGB cameras is, despite giving the solutions real time, it needs a lot of computational power. Processing the video and then feeding it to a Neural Network is difficult to be solved using embedded devices. Signal Processing of cameras is more difficult than signals from other sensors.  This is the reason why the cameras or the imagers are not used in the lighting industry which is highly performance driven. 
 
 
-\subsection{Passive Infrared Sensors (PIR's)}
+\subsection{Passive Infrared Sensors (PIRs)}
 PIR sensors have been widely used for human detection systems as they are cheap and power consumption is relatively small. The main advantage of PIRs is their unobtrusive and privacy-preserving interaction.
 \\
 
-Teixeira, Thiago et al.~\cite{teixeira2010survey} provided a survey of the multidisciplinary literature of human-sensing including presence detection.From the presence detection perspective, PIR sensors are often used for binary sensing as they are cheap sensors and have very low power requirements. However, the main
+Teixeira et al.~\cite{teixeira2010survey} provided a survey of the multidisciplinary literature of human-sensing including presence detection.From the presence detection perspective, PIR sensors are often used for binary sensing as they are cheap sensors and have very low power requirements. However, the main
 disadvantage of this is that PIRs tend to produce bursty positive detection and a large number of false negative
 detection, for example, PIRs cannot sense people who are
 standing still.
 \\
 
-Kim, Sun Ho, et al.~\cite{kim2017improved} studied the use of passive infrared (PIR) sensors along with a door sensor to ensure the accuracy of occupancy detection. The algorithm could detect with an improved occupancy detection accuracy rates of 99.8 \% (when the number of occupants is 1 to 6) and 90.1\% (when the number of occupants is: 1) were achieved.The results of the experiments show that the occupancy detection algorithm along with a door sensor could be used to improve the occupancy detection accuracy rates of
+Kim et al.~\cite{kim2017improved} studied the use of passive infrared (PIR) sensors along with a door sensor to ensure the accuracy of occupancy detection. The algorithm could detect with an improved occupancy detection accuracy rates of 99.8\% (when the number of occupants is 1 to 6) and 90.1\% (when the number of occupants is: 1) were achieved. The results of the experiments show that the occupancy detection algorithm along with a door sensor could be used to improve the occupancy detection accuracy rates of
 the PIR sensors.
 \\
 	
 
 
-The use of only PIR sensors for occupancy monitoring does not offer enough savings and depends a lot on the type of the building and its occupancy. Aslam, Javed, et al.~\cite{manzoor2012occupancy} presented a paper using data fusion approach of traditional occupancy monitoring PIR sensor with passive Radio Frequency Identification (RFID).
+The use of only PIR sensors for occupancy monitoring does not offer enough savings and depends a lot on the type of the building and its occupancy. Aslam et al.~\cite{manzoor2012occupancy} presented a paper using data fusion approach of traditional occupancy monitoring PIR sensor with passive Radio Frequency Identification (RFID).
 The users of the experiment are provided with Ultra High Frequency (UHF) tags. The RFID readers which are mounted on the door, detects any tag which passes through them.
 \\
-However from the saving perspective, The time duration for which the maximum number of lights switched on all at the same time, is much less than PIR. Additionally, the time duration for the minimum number of lights switched ON for
-this method is longer than using PIRs standalone 
-Due to the less reliability in signal propagation that comes with passive RFID technology, an obvious malfunction of this approach comes when a tag is not read.
+However from the saving perspective, The time duration for which the maximum number of lights switched on all at the same time, is much less than PIR. Additionally, the time duration for the minimum number of lights switched on for
+this method is longer than using PIRs standalone. Due to the less reliability in signal propagation that comes with passive RFID technology, an obvious malfunction of this approach comes when a tag is not read.
 \\
 
 
 
-\subsection{Sensing using Carbon dioxide}
+\subsection{Sensing using Carbon Dioxide}
 
 
-Ansanay-Alex,Guillaume~\cite{ansanay2013estimating} proposes a algorithm to use only indoor carbon dioxide concentrations to provide estimated occupancy profile in office setup. This paper simply used the gradient of the monitored CO$_{2}$ in order to make detection. The method is well functional for arrivals and departures in a closed space. However the results are considerable if the air change rate of the room remain inert for some duration of time, i.e window opening or door opening may lead to wrong  results. These are also rarely used for the control of lighting systems due to their slow response and sensitivity to environmental conditions~\cite{teixeira2010survey}.
+Ansanay-Alex,Guillaume~\cite{ansanay2013estimating} proposes a algorithm to use only indoor carbon dioxide concentrations to provide estimated occupancy profile in an office setup. This paper simply used the gradient of the monitored CO$_{2}$ in order to make detection. The method is well functional for arrivals and departures in a closed space. However the results are considerable if the air change rate of the room remain inert for some duration of time, i.e., window opening or door opening may lead to wrong  results. These are also rarely used for the control of lighting systems due to their slow response and sensitivity to environmental conditions~\cite{teixeira2010survey}.
 \\
 
-Cali, Davide, et al~\cite{cali2015co2} proposed an algorithm to predict the occupancy detection using concentration of carbon dioxide with cheap CO$_{2}$ sensors. The algorithm uses mass balance equation and assumes air to be homogeneous, i.e, the ideal mix of supply and room air. The results of the algorithm provides correct presence profile up to 95.8\%  of the time, whereas for the people
+Cali et al.~\cite{cali2015co2} proposed an algorithm to predict the occupancy detection using concentration of carbon dioxide with cheap CO$_{2}$ sensors. The algorithm uses mass balance equation and assumes air to be homogeneous, i.e., the ideal mix of supply and room air. The results of the algorithm provides correct presence profile up to 95.8\%  of the time, whereas for the people
 counting, it correctly predicted up to 80.6\%  of the time. The authors of papers used presence patters as inputs of stochastic user models to predict occupancy. 
 
 
-\subsection{Pressure sensors}
-Another approach to predict the occupancy was proposed by Labeodan, Timilehin, et al. ~\cite{labeodan2016experimental} who evaluated the performance of chair sensors using sensing techniques based on strain, vibration and a mechanical-switch for occupancy detection in an office space.
+\subsection{Pressure Sensors}
+Another approach to predict the occupancy was proposed by Labeodan et al.~\cite{labeodan2016experimental} who evaluated the performance of chair sensors using sensing techniques based on strain, vibration and a mechanical-switch for occupancy detection in an office space.
 \\
 All three sensors are susceptible to the impact force created by users when they move the chair or when they seat in it. All the three type of sensors were prone to false negatives, however only the vibration and strain sensors gave false positives. At the end of the experiment, the mechanical sensors worked best with accuracy of 99\%. The performance of the mechanical-switch was compared to traditional PIRs for the purpose of lighting control. The results demonstrated that the chair sensors performed better than the PIR sensors.
 
@@ -68,48 +69,48 @@ All three sensors are susceptible to the impact force created by users when they
 To compensate the drawback of individual single sensor, many researchers have tried assembling multiple sensors into one system in order to achieve better reliability and accuracy.
 \\
 
-Dodier, Robert H., et al.~\cite{dodier2006building} proposed an improved detection of building occupancy using multiple independent detectors by applying graphical probability models called belief networks. The multiple sources of information are clubbed together, creating more powerful sensors, such as, carbon dioxide concentration and space relative humidity.
+Dodier et al.~\cite{dodier2006building} proposed an improved detection of building occupancy using multiple independent detectors by applying graphical probability models called belief networks. The multiple sources of information are clubbed together, creating more powerful sensors, such as, carbon dioxide concentration and space relative humidity.
 \\
 
 
 
-Ekwevugbe, Tobore, et al.  ~\cite{ekwevugbe2012design} described a novel solution for building occupancy detection using sensor fusion model based on an Artifical -intelligence using Adaptive Neuro-Fuzzy Inference System (ANFIS) algorithm. The system monitors climatic variables, energy data and indoor events obtained from a non-domestic building to infer occupancy patterns.
+Ekwevugbe et al.  ~\cite{ekwevugbe2012design} described a novel solution for building occupancy detection using sensor fusion model based on an Artifical Intelligence using Adaptive Neuro-Fuzzy Inference System (ANFIS) algorithm. The system monitors climatic variables, energy data and indoor events obtained from a non-domestic building to infer occupancy patterns.
 \\
-Climate variables include data like indoor and outdoor variables including temperature, humidity, illumination, VOC and CO2 levels.
+Climate variables include data like indoor and outdoor variables including temperature, humidity, illumination, VOC and CO$_{2}$ levels.
 Energy data includes using existing sub metering
 (for electricity), appliance case temperature monitoring, and monitoring of personal computer (PC) temperature.
 Indoor data includes variables such as sound data and  PIR data. The resulting occupancy sensor from this research possessed improved reliability that may not be obtained from a single sensor. 
 
 \subsection{Range Finders}
 The Range Finders are devices that work by sending the signals towards the objects, and then calculate the distance by observing the timing or the energy of the received signals reflected from those objects. These devices then extract the 2D or 3D snapshots of the environment. It is worth mentioning that in an indoor environment, multiple reflections, scattering and cluttering add considerable noise to their range ~\cite{teixeira2010survey}. This is the reason why the range finders are usually confined to detection in outdoor spaces like Self Driving Cars. 
-Based on the medium of propagation, range finders are classified into different classes :SONAR (sound or ultrasound),  RADAR (radio waves), LIDAR
+Based on the medium of propagation, range finders are classified into different classes :SONAR (sound or ultrasound),  RADAR (radio waves), LiDAR
 (light), LADAR (laser).
 
-Among all of the range finders, laser based ranging (LADAR) is least sensitive to multiple reflections, scattering and cluttering. Arras, Kai O., et al.~\cite{arras2007using} presented a paper for the detection and tracking of people with LADAR (laser) range finders. The authors of the papers used supervised learning technique to create a classifier for detection of humans. Unlike vision sensors, LADARs provide a large field of view (FOV) and is almost unaffected by other conditions. The sensors are placed very close to the ground and extract the readings from the legs of the people. A 2D range image is created out of the received signals. The common approach is to extract legs by detecting moving blobs. The experiment obtained detection rates of over 90\%. However the problem still remains of the false negatives. LADARs are still not a reliable solution to be deployed as a standalone. Usually they are paired up cameras for the gaming industry. But they remain less efficient for working premises.
+Among all of the range finders, laser based ranging (LADAR) is least sensitive to multiple reflections, scattering and cluttering. Arras et al.~\cite{arras2007using} presented a paper for the detection and tracking of people with LADAR range finders. The authors of the papers used Supervised Learning technique to create a classifier for detection of humans. Unlike vision sensors, LADARs provide a large field of view (FOV) and is almost unaffected by other conditions. The sensors are placed very close to the ground and extract the readings from the legs of the people. A 2D range image is created out of the received signals. The common approach is to extract legs by detecting moving blobs. The experiment obtained detection rates of over 90\%. However the problem still remains of the false negatives. LADARs are still not a reliable solution to be deployed as a standalone. Usually they are paired up cameras for the gaming industry. But they remain less efficient for working premises.
 \\
 
-%Premebida et al.~\cite{teixeira2010survey} discusses outdoor presence detection like pedestrian detection using exclusively LIDAR based features.
+%Premebida et al.~\cite{teixeira2010survey} discusses outdoor presence detection like pedestrian detection using exclusively LiDAR based features.
 %----complete this------- %
 
 RADAR is one of the most prominent range finder used for occupancy detection. It can give accurate results in all types of luminance scenarios and all weather conditions.
-G\"{u}rb\"{u}z, S. Z., et al.~\cite{gurbuz2007detection} targeted the problem of human target detection using synthetic aperture RADAR (SAR). The human spectrograms are used for the detection as the spectrograms for humans are unique is comparison to other objects. Simulations show that spectrograms can detect and identify human targets in low noise. However this approach works only if the target is close to the antenna and signal to noise ratio (SNR) is high. In an indoor environment where the SNR is high, it is very difficult to provide reliable estimation using this method.
+G\"{u}rb\"{u}z et al.~\cite{gurbuz2007detection} targeted the problem of human target detection using synthetic aperture RADAR (SAR). The human spectrograms are used for the detection as the spectrograms for humans are unique is comparison to other objects. Simulations show that spectrograms can detect and identify human targets in low noise. However this approach works only if the target is close to the antenna and signal to noise ratio (SNR) is high. In an indoor environment where the SNR is high, it is very difficult to provide reliable estimation using this method.
 \\
 
-Apart from the most common motion sensors i.e. PIRs, other sensors called Doppler shift sensors also exist. Doppler shift means the apparent shift in the frequency of the radial component of the velocity of the object.
+Apart from the most common motion sensors i.e., PIRs, other sensors called Doppler shift sensors also exist. Doppler shift means the apparent shift in the frequency of the radial component of the velocity of the object.
 Geisheimer et al.~\cite{geisheimer2002high} presented a high resolution Doppler model for the walking human using Continuous Wave (CW) RADAR. The outputs of the RADAR were compared with infrared motion capture system to create the theoretical Doppler signal for walking human. The experiment succeed in unlocking information from the RADAR gait signature, which can be useful in occupancy detection. However the experiment was confined to only standing humans. Further research is required in order to create different signatures for different postures. 
 \\
 
-In ~\cite{zhou2006detection}, Zhou et al. used a system which analysed the Doppler RADAR signal of the heartbeat to detect people occupancy in the room. A complex signal processing is used to process these weak signals. Due to Doppler effect, the periodic reflected signals from the chest, gets a phase shift which is proportional to the velocity. The conclusion of the experiment was that less than 2 persons in the room could easily be detected using single antenna of the receiver. To count more people, more antennas are required. 
+In ~\cite{zhou2006detection}, Zhou et al. used a system which analysed the Doppler RADAR signal of the heartbeat to detect people occupancy in the room. A complex signal processing is used to process these weak signals. Due to Doppler effect, the periodic reflected signals from the chest, gets a phase shift which is proportional to the velocity. The conclusion of the experiment was that less than two persons in the room could easily be detected using single antenna of the receiver. To count more people, more antennas are required. 
 \\
 
-The ability of the RADARs to penetrate objects like wall, make them less likely to be used for occupancy detection inside the room. For instance Falconer, D. G., et al.~\cite{falconer2000robot} demonstrated a robot mounted motion detection RADAR which is suitable for operations even through the wall( gypsum board walls or hardwood walls). Time domain and frequency domain signals are captured to detect not only the human occupancy but also human's particular activity like resting, walking, talking.
+The ability of the RADARs to penetrate objects like wall, make them less likely to be used for occupancy detection inside the room. For instance Falconer et al.~\cite{falconer2000robot} demonstrated a robot mounted motion detection RADAR which is suitable for operations even through the wall( gypsum board walls or hardwood walls). Time domain and frequency domain signals are captured to detect not only the human occupancy but also human's particular activity like resting, walking, talking.
 
 \section{RADAR technology}
-RAdio Detection And Ranging is an electromagnetic range finder device that observed the echoed signals by their time delays.  The RADAR can operate in the radio or in the microwave domain. 
-It is used for various applications on ground, on sea and in space. The applications of RADARs are controlling the Air Traffic, Ship safety, Sensing the remote places, Military applications etc~\cite{RADAR}.
+RAdio Detection And Ranging is an electromagnetic range finder device that observes the echoed signals by their time delays.  The RADAR can operate in the radio or in the microwave domain. 
+It is used for various applications on ground, on sea and in space. The applications of RADARs are controlling the air traffic, ship safety, sensing the remote places, military applications etc~\cite{RADAR}.
 
 As shown by Figure~\ref{fig:basic_principle}, the RADAR consists of a \textbf{Transmitter} which is used to send the signals, a \textbf{Receiver} which is used to receive the echoed signals.
-The received signals are then analysed to process the range, the velocity of the targeted object. 
+The received signals are then analysed to process the range and the velocity of the targeted object. 
 
 \begin{figure}[ht]
   \begin{center}
@@ -125,7 +126,7 @@ The received signals are then analysed to process the range, the velocity of the
 On a broad level, the RADARs can be divided into \begin{enumerate}
     \item \textbf{Pulse RADAR}
     
-    In Pulse RADAR, the RADAR operates with Pulse signals. The RADAR sends the signals for a pulse of duration and then waits to receive the signals. The Pulse RADAR is further classified into Basic Pulse RADAR and Moving Target Indicator RADAR (MTI)
+    In Pulse RADAR, the RADAR operates with pulse signals. The RADAR sends the signals for a pulse of duration and then waits to receive the signals. The Pulse RADAR is further classified into Basic pulse RADAR and Moving Target Indicator RADAR (MTI)
     \begin{enumerate}
     \item \textbf{Basic Pulse RADAR}
     
@@ -147,7 +148,7 @@ On a broad level, the RADARs can be divided into \begin{enumerate}
     
     \item \textbf{Frequency Modulated Continuous Wave RADAR (FMCW)}
     
-    This is the most advanced type of RADAR which can be used for detecting the both the stationary and non stationary objects.An FMCW RADAR requires two antennas- one for transmitting and the other one for receiving. The distance and velocity of the objects can be easily computed using Fourier transformations (FFT) of the received signals. More detailed explanation about FMCW is provided in the following section. 
+    This is the most advanced type of RADAR which can be used for detecting the both the stationary and non stationary objects.An FMCW RADAR requires two antennas: one for transmitting and the other one for receiving. The distance and velocity of the objects can be easily computed using Fourier transformations (FFT) of the received signals. More detailed explanation about FMCW is provided in the following section. 
 \end{enumerate}
 \end{enumerate} 
 
@@ -159,7 +160,7 @@ On a broad level, the RADARs can be divided into \begin{enumerate}
 
 \subsection{Frequency Modulated Continuous Wave RADAR (FMCW)}
 
-Continuous Wave Radar are popular because of low power consumption and simple radio architecture. Also,these type of Radars cancel out clutter noise by proper adjustment. The main advantages of the FMCW remains good range resolution, resistance to interception, simple solid-state transmitters. FMCW method performs the velocity and range measurement efficiently and therefore it is a good solution for lighting industry~\cite{arai2000life}~\cite{li2006experiment}.
+Continuous Wave RADAR are popular because of low power consumption and simple radio architecture. Also, these type of RADARs cancel out clutter noise by proper adjustment. The main advantages of the FMCW remains good range resolution, resistance to interception, simple solid-state transmitters. FMCW method performs the velocity and range measurement efficiently and therefore it is a good solution for lighting industry~\cite{arai2000life}~\cite{li2006experiment}.
 
 
 FMCW generates a linearly increasing frequency signal viz., sawtooth or sinusoidal wave using a synthesizer. The generated signal is then transmitted using one or more antennas.
@@ -181,12 +182,12 @@ Each signal is called \textbf{chirp/sweep}. A chirp is a signal whose frequency 
 \end{figure}   
 \end{itemize}
 
-Therefore, the frequency of the signal \(f_{t}\) at any time \(t\), with carrier frequency \(f_{c}\) , amplitude \(A_{t}\), slope \(t\), is given by the following expression
+Therefore, the frequency of the signal \(f_{t}\) at any time \(t\), with carrier frequency \(f_{c}\) , amplitude \(A_{t}\), slope \(t\), is given by the following expression:
 
-\[f_{t}= A_{t}cos[2\pi(f_{c}t + \frac{k}{2}t^2)]\]
-
+\[f_{t}= A_{t}\cos[2\pi(f_{c}t + \frac{k}{2}t^2)]\]
+l
 The transmitted signal TX is transmitted through the transmitter antenna. The TX signal strikes the surface of the object and gets reflected back. The receiver of the FMCW receives this reflected signal RX via its receiving antenna. RX signal is just the same TX signal but delayed.
-To compute the range, velocity or phase of the object, the most important factor to measure is the \textbf{Baseband signal} with frequency IF known as \textbf{Intermediate Frequency (IF)}. The frequency of the Baseband signal is the difference of the instantaneous frequency of the TX-chirp and RX-chirp. It is to be noted that for a stationary object, irrespective of when the  chirp was transmitted, this IF signal will remain same, as this IF signal is proportional to the delay time which is proportional to the distance of the object from Radar. Figure ~\ref{fig:IF} explains the IF signal in the mathematical way. 
+To compute the range, velocity or phase of the object, the most important factor to measure is the \textbf{Baseband signal} with frequency IF known as \textbf{Intermediate Frequency (IF)}. The frequency of the Baseband signal is the difference of the instantaneous frequency of the TX-chirp and RX-chirp. It is to be noted that for a stationary object, irrespective of when the  chirp was transmitted, this IF signal will remain same, as this IF signal is proportional to the delay time which is proportional to the distance of the object from RADAR. Figure ~\ref{fig:IF} explains the IF signal in the mathematical way. 
 
 \begin{figure}[!tbp]
   \centering
@@ -208,15 +209,15 @@ To compute the range, velocity or phase of the object, the most important factor
     % below the size of the figure has been reduced for example
     \includegraphics[width=0.650\textwidth]{Master's thesis/images/fmcw_working.jpg} 
     \caption{Block Diagram for FMCW}
-    \caption*{\textit{Source:} Radar Systems - FMCW Radar~\cite{tutorialspoint}.}
+    \caption*{\textit{Source:} RADAR Systems - FMCW RADAR~\cite{tutorialspoint}.}
     \label{fig:fmcw}
   \end{center}
 \end{figure}   
 
 Figure ~\ref{fig:fmcw} explains in detail on how this Baseband signal is produced. 
-The \textbf{Frequency Modulator} produces a modulated frequency signal TX which is transmitted using \textbf{Transmitter}. The \textbf{Local Oscillator} produces a signal having Radio Frequency \(f_{rf}\). The output of the Local Oscillator is then feeded to a mixer along with the output of the Transmitter. The \textbf{Mixer} computes then sum and the difference of the Transmitted frequency and the RF signal from Local Oscillator. A low pass filter then only allows the lower frequency to be passed i.e. only the difference of the Transmitter and the RF signal \(f_o(t) - f_{rf}\) is allowed. ~\cite{tutorialspoint}. 
+The \textbf{Frequency Modulator} produces a modulated frequency signal TX which is transmitted using \textbf{Transmitter}. The \textbf{Local Oscillator} produces a signal having Radio Frequency \(f_{rf}\). The output of the Local Oscillator is then feed to a mixer along with the output of the Transmitter. The \textbf{Mixer} computes then sum and the difference of the Transmitted frequency and the RF signal from Local Oscillator. A low pass filter then only allows the lower frequency to be passed i.e., only the difference of the Transmitter and the RF signal \(f_o(t) - f_{rf}\) is allowed. ~\cite{tutorialspoint}. 
 
-Another \textbf{Mixer}, is feeded the received signal from the receiving antenna \(f_r\) and the output of the low pass filter. It is worth mentioning that the received signal RX is just a delayed version of the transmitted signal TX. It then computes the sum and the difference of these signals again, i.e. \(f_r\) + \(f_o(t) - f_{rf}\), \(f_r\) - (\(f_o(t) - f_{rf}\))~\cite{tutorialspoint}. An \textbf{Amplifier} amplifies the differenced output of the Mixer, i.e. only \(f_r\) - \(f_o(t) + f_{rf}\) is amplified. The \textbf{Balance Detector} which is connected to both the Amplifier and the Local Oscillator computes the difference of the both input signals, hence generating a signal of frequency \(f_r - f_o(t)\). 
+Another \textbf{Mixer}, is feeded the received signal from the receiving antenna \(f_r\) and the output of the low pass filter. It is worth mentioning that the received signal RX is just a delayed version of the transmitted signal TX. It then computes the sum and the difference of these signals again, i.e.,\(f_r\) + \(f_o(t) - f_{rf}\), \(f_r\) - (\(f_o(t) - f_{rf}\))~\cite{tutorialspoint}. An \textbf{Amplifier} amplifies the differenced output of the Mixer, i.e., only \(f_r\) - \(f_o(t) + f_{rf}\) is amplified. The \textbf{Balance Detector} which is connected to both the Amplifier and the Local Oscillator computes the difference of the both input signals, hence generating a signal of frequency \(f_r - f_o(t)\). 
 This output is then inputted to \textbf{Low Frequency Amplifier} which amplifies the input frequency. This resultant signal is then called the Baseband signal ~\cite{tutorialspoint}. 
 
 
@@ -228,71 +229,68 @@ In order to understand the functionality of FMCW in better detail, we will divid
 \end{itemize}
 
 \subsection{Signal Processing for FMCW}
-The Baseband signal is constructed by the Radar when an object reflects the signals. However in a real scenario, there are multiple objects in the scene resulting in multiple Baseband signals. Therefore Radar receives combination of these Baseband signals. To differentiate different objects, Radar should be able to differentiate between different signals. To do so, Radar uses Fourier Transformations. A brief summary of Fourier Transformations is provided in the following subsection.
+\label{Signal Processing for FMCW}
+The Baseband signal is constructed by the RADAR when an object reflects the signals. However in a real scenario, there are multiple objects in the scene resulting in multiple Baseband signals. Therefore RADAR receives combination of these Baseband signals. To differentiate different objects, RADAR should be able to differentiate between different signals. To do so, RADAR uses Fourier transformations. A brief summary of Fourier transformations is provided in the following subsection.
 
 
-\subsubsection{Fourier Transformation} \label{sec:FT}
+\subsubsection*{Fourier Transformation} \label{sec:FT}
 According to ~\cite{FT}
 \say{Fourier transform (FT) is a mathematical transform that decomposes functions depending on space or time into functions depending on spatial or temporal frequency.}
-Specific to FMCW, Fourier Transform is used to convert a time domain signal into the frequency domain. 
+Specific to FMCW, Fourier transform is used to convert a time domain signal into the frequency domain. 
 Consider a frequency signal in the form -  
 \begin{equation}\label{eq:eq1}
 A_{t}= ASin[2\pi ft + \phi]
 \end{equation}
-Let's suppose A =2, t= 1sec, \(\phi\) = 0 and f = 4.
+Suppose \(A =2, t= 1 sec, \phi = 0\) and \(f = 4\).
 \\
-Therefore, the eq ~\ref{eq:eq1} becomes
+Therefore, the eq~\eqref{eq:eq1} becomes:
 \begin{equation}
 A_{t}= 2Sin[8\pi]    
 \end{equation}
 
-The Fourier Transformation of this signal, returns a frequency-amplitude domain signal, with a peak at \textbf{4} as the frequency of the signal was 4.
+The Fourier transformation of this signal, returns a frequency-amplitude domain signal, with a peak at \textbf{4} as the frequency of the signal was 4.
 
  \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
     \includegraphics[width=1\textwidth, height = 3.5cm ]{Master's thesis/images/fft.png} 
-    \caption{Fourier Transformation of a constant frequency signal}
+    \caption{Fourier transformation of a constant frequency signal}
     \label{fig:fft}
   \end{center}
 \end{figure}  
 
-However, in a real time scenario, signals are not continuous, rather discrete. Therefore for discrete signals, Discrete Fourier Transform (DFT) is commonly used. The resolution limit is determined by the number of input samples.
-The output of the DFT has the same size as input. For a device like Radar where the frequency of the signal is usually in GHz, the sampling index is huge, therefore the number of outputs of DFT will be huge. Increasing the number of inputs, increased the computation power by $O[N^2]$.
+However, in a real time scenario, signals are not continuous, rather discrete. Therefore for discrete signals, Discrete Fourier transform (DFT) is commonly used. The resolution limit is determined by the number of input samples.
+The output of the DFT has the same size as input. For a device like RADAR where the frequency of the signal is usually in GHz, the sampling index is huge, therefore the number of outputs of DFT will be huge. Increasing the number of inputs, increased the computation power by $O[N^2]$.
 \\
 
-Therefore, to make the computations less complex, the number of samples are chosen as a power of $2^N$ which enables to use Fast Fourier Transform (FFT) instead of DFT. The complexity of FFT is $O[NlogN]$ instead of $O[N^2]$. FFT can be used either by increasing the sampling rate or by appending zeros at the end before performing FFT. Zero padding makes the resolution between two consecutive bins easier.
+Therefore, to make the computations less complex, the number of samples are chosen as a power of $2^N$ which enables to use Fast Fourier transform (FFT) instead of DFT. The complexity of FFT is $O[NlogN]$ instead of $O[N^2]$. FFT can be used either by increasing the sampling rate or by appending zeros at the end before performing FFT. Zero padding makes the resolution between two consecutive bins easier.
 
 It is worth mentioning that the resolution of the FFT increases with the length of the observation period. In general, an observation window if T can separate frequency components that are separated by more than $\frac{1}{T}$ Hz~\cite{rao_2017}.
 %windowing%
 
 
-\subsubsection{Range Evaluation for Stationary targets}\label{sec:rangeEval}
+\subsubsection*{Range Evaluation for Stationary targets}\label{sec:rangeEval}
 
-Consider an object as distance $d$ from the FMCW Radar. From ~\ref{fig:IF}, we can clearly say that the frequency of the IF signal is 
+Consider an object as distance $d$ from the FMCW RADAR. From eq ~\eqref{fig:IF}, we can clearly say that the frequency of the IF signal is 
 \begin{equation}\label{eq:range}
     f_{\tau}= k\tau
 \end{equation}
-where k is the slope of the chirp, $\tau$ is the delay in the RX signal.
-But 
-\begin{equation}
-    Time = Distance*Speed
-\end{equation}
-Therefore, substituting Distance = 2d ( To and fro distance covered by the signal from Radar) and Speed = c (speed of light) into eq ~\ref{eq:range}, we get:
+where \(k\) is the slope of the chirp, $\tau$ is the delay in the RX signal.
+But, \(Time = Distance*Speed\), Therefore, substituting \(Distance = 2d\) ( To and fro distance covered by the signal from RADAR) and \(Speed = c\) (speed of light) into eq~\eqref{eq:range}, we get:
 \begin{equation}\label{eq:range_eq}
 f_{\tau}= k\frac{2d}{c}   
 \end{equation}
 
-Eq ~\ref{eq:range_eq} indicates the Intermediate frequency of the Baseband signal obtained from an object placed at a distance d.
+Eq~\eqref{eq:range_eq} indicates the Intermediate frequency of the Baseband signal obtained from an object placed at a distance \(d\).
 \\
 
 
-In a real scenario, an FMCW receives a signal which is a combination of different Intermediate Frequencies. These IF signals are produced by objects placed at different ranges. From Eq~\ref{eq:range_eq}, it is evident that these IF signals are proportional to the distance d at which the object is placed.
+In a real scenario, an FMCW receives a signal which is a combination of different Intermediate frequencies. These IF signals are produced by objects placed at different ranges. From eq~\eqref{eq:range_eq}, it is evident that these IF signals are proportional to the distance d at which the object is placed.
 This is where Fourier Transformations discussed in section ~\ref{sec:FT} comes into picture.
 
 To calculate the range of different objects present in the view, the output received by the FMCW Receiver is transformed using FFT. This result is called \textbf{Range FFT} of the received signal RX.
 
-For instance, let's imagine the receiver receives the composite signal as shown in the Fig \ref{fig:comp_fft}. The signal is formed by addition of two different IF signals with frequencies of 4 Hz and 6 Hz, and the amplitude of 2 m and 3 m.
+For instance, let us imagine the receiver receives the composite signal as shown in the Fig. \ref{fig:comp_fft}. The signal is formed by addition of two different IF signals with frequencies of 4 Hz and 6 Hz, and the amplitude of 2 m and 3 m.
 The frequencies and the amplitude of these composite signals can be easily obtained by using FFT on this signal. The plot beneath the composite signals indicates the FFT output on the composite signal.
 Therefore, in a real time scenario to obtain a range estimation of all the objects in the frame, it is important to use Range FFT.
  \begin{figure}[ht]
@@ -307,7 +305,7 @@ Therefore, in a real time scenario to obtain a range estimation of all the objec
 \textbf{Range Resolution} is defined as the minimum distance that should be there in between two objects to differentiate them for FMCW. As previously explained, in order to differentiate two objects, the frequency difference should be at least 1/T i.e., 
 \begin{equation}\label{eq:fgtt}
  \Delta f > \frac{1}{T}  
-\end{equation}Consider two objects, placed at a distance of $d_{1}$ and $d_{2}$, from eq~\ref{eq:range_eq}, their respective IF frequencies are given by
+\end{equation}Consider two objects, placed at a distance of $d_{1}$ and $d_{2}$, from eq~\eqref{eq:range_eq}, their respective IF frequencies are given by:
  \begin{equation}
    f_{\tau1}= k\frac{2d_{1}}{c}
  \end{equation} 
@@ -321,38 +319,38 @@ Therefore, in a real time scenario to obtain a range estimation of all the objec
  \begin{equation}\label{eq:deltaf}
      \Delta f = k\frac{2\Delta d}{c}
  \end{equation}
-Substituting Eq~\ref{eq:deltaf} in Eq ~\ref{eq:fgtt} and T with the observation period $T_{c}$, we get,
+Substituting eq~\eqref{eq:deltaf} in eq~\eqref{eq:fgtt} and \(T\) with the observation period $T_{c}$, we get:
 \begin{equation}
   k\frac{2\Delta d}{c} > \frac{1}{T_{c}}  \implies \Delta d > \frac{c}{2kT_{c}} \implies \Delta d > \frac{c}{2B}  
 \end{equation}
 where $B$ is the Bandwidth of the chip and is equal to $kT_{c}$.
 
-Hence, the Range Resolution ($d_{res}$), depends only on the speed of the light and Bandwidth of the chirp~\cite{rao_2017}, $\therefore$ 
+Hence, the Range Resolution ($d_{res}$), depends only on the speed of the light and Bandwidth of the chirp~\cite{rao_2017}, therefore:
 
 \begin{equation}
    d_{res} = \frac{c}{2B} 
 \end{equation}
 
-\textbf{Maximum Range} of the Radar is defined as the distance beyond which FMCW fails to operate. From Eq. ~\ref{eq:range_eq}, substituting $d$ with $d_{max}$, we get \(f_{IF_max} = \frac{k2d_{max}}{c}\) . Replacing $f_{IF_max}$ with $F_{s}$,where $F_{s}$ is the maximum sampling rate of Radar, we have,
+\textbf{Maximum Range} of the RADAR is defined as the distance beyond which FMCW fails to operate. From eq~\eqref{eq:range_eq}, substituting $d$ with $d_{max}$, we get \(f_{IF_max} = \frac{k2d_{max}}{c}\) . Replacing $f_{IF_max}$ with $F_{s}$, where $F_{s}$ is the maximum sampling rate of RADAR, we have:
 \begin{equation}
     d_{max}= \frac{F_{s}c}{2k}
 \end{equation}
 
 This means we an increase or decrease the maximum field of view range by changing either maximum sampling rate or the bandwidth.
 \begin{itemize}
-    \item Keeping Maximum Sampling rate constant $F_{s}$, the Maximum Range of the Radar can be manipulated by changing the Bandwidth.
-    \item Similarly,  Keeping Bandwidth constant, the Maximum Range of the Radar can be manipulated by changing the Maximum Sampling Rate $F_{s}$.
+    \item Keeping Maximum Sampling rate constant $F_{s}$, the Maximum Range of the RADAR can be manipulated by changing the Bandwidth.
+    \item Similarly,  Keeping Bandwidth constant, the Maximum Range of the RADAR can be manipulated by changing the Maximum Sampling Rate $F_{s}$.
 \end{itemize}
 
 
 
-\subsubsection{Velocity Evaluation for Moving targets}
-According to section~\ref{sec:rangeEval}, to separate different objects in the view, Range FFT is applied on the received RX signal. However the question to ask here is "\textit{How can the two objects placed at same radial distance from FMCW can be separated?}"~\cite{rao_2017}. The FFT of the two objects placed at same distance will give peak bins at the same frequency. However doing further signal, this problem can be resolved using the velocities of these object which are at same distance. It is to be noted that these objects can be differentiated if the velocities of these objects are different.
+\subsubsection*{Velocity Evaluation for Moving targets}
+According to section~\ref{sec:rangeEval}, to separate different objects in the view, Range FFT is applied on the received RX signal. However the question to ask here is \textit{``How can the two objects placed at same radial distance from FMCW can be separated?"}~\cite{rao_2017}. The FFT of the two objects placed at same distance will give peak bins at the same frequency. However doing further signal, this problem can be resolved using the velocities of these object which are at same distance. It is to be noted that these objects can be differentiated if the velocities of these objects are different.
 
 To solve this problem, Fourier Transformation comes into the picture. However instead of doing Range FFT, \textbf{Doppler FFT} is used.
 
-Let's go a step further to what is explained in sec ~\ref{sec:FT}. Note that using Euler's formula, any sinusoidal signal in rectangular form can be expressed in the form of complex exponential signal. A Euler's formula is expressed as \(Ae^{j\theta}\), where $A$ is the amplitude of the signal and $\theta$ is the initial phase of the signal. The Fourier transformation of the signals produces a complex signal, i.e, an amplitude value as well as the phaser. 
-In the Fig ~\ref{fig:euler}, waves and their corresponding Euler's representations are shown.
+Going a step further to what is explained in subsection ~\ref{sec:FT}, Note that using Euler's formula, any sinusoidal signal in rectangular form can be expressed in the form of complex exponential signal. A Euler's formula is expressed as \(Ae^{j\theta}\), where $A$ is the amplitude of the signal and $\theta$ is the initial phase of the signal. The Fourier transformation of the signals produces a complex signal, i.e., an amplitude value as well as the phaser. 
+In the Fig. ~\ref{fig:euler}, waves and their corresponding Euler's representations are shown.
 
  \begin{figure}[ht]
   \begin{center}
@@ -363,23 +361,23 @@ In the Fig ~\ref{fig:euler}, waves and their corresponding Euler's representatio
   \end{center}
 \end{figure}  
 
-Now, consider the Fig ~\ref{fig:Mixer}, what happens if the target object moves by a distance of $\Delta d$. It can be surely said that the frequency of the Baseband signal i.e, Intermediate Frequency will be change by $\frac{2\Delta d}{c}$. This value is close to 0, since $\Delta d$ is very small. However, the initial phase of the IF signal will definitely change, despite the fact that the intermediate frequency is same. Change in $\Delta d$ makes $\Delta\tau$, round trip delay.
-Phase $\theta$ of a wave at any time t, can be represented as-
+Now, consider the Fig. ~\ref{fig:Mixer}, what happens if the target object moves by a distance of $\Delta d$. It can be surely said that the frequency of the Baseband signal i.e, Intermediate frequency will be change by $\frac{2\Delta d}{c}$. This value is close to zero, since $\Delta d$ is very small. However, the initial phase of the IF signal will definitely change, despite the fact that the intermediate frequency is same. Change in $\Delta d$ makes $\Delta\tau$, round trip delay.
+Phase $\theta$ of a wave at any time t, can be represented as:
  \begin{equation}
      \theta= 2\pi ft
  \end{equation}
-Therefore change in theta with change in time $\Delta t$ is-
+Therefore change in theta with change in time $\Delta t$ is:
  \begin{equation}
      \Delta\theta= 2\pi f\Delta t
  \end{equation}
- For the purpose of simplicity, we represent change in phase i.e, $\delta \theta$ with $\omega$. It is known that, $\Delta t= \frac{2\Delta d}{c}$ and $f= \frac{c}{\lambda},  \therefore$ putting everything together - 
+ For the purpose of simplicity, we represent change in phase i.e., $\delta \theta$ with $\omega$. It is known that, $\Delta t= \frac{2\Delta d}{c}$ and $f= \frac{c}{\lambda}$, therefore putting everything together:
  \begin{equation}\label{eq:theta}
      \omega= \frac{4\pi \Delta d}{\lambda}
  \end{equation} 
 
 This is the change in phase of the IF signal, when an object moves by distance 
 \begin{equation}\label{eq:eq1}
-A_{t}= ASin[2\pi \frac{k2d}{c}t + \frac{4\pi \Delta d}{\lambda}]
+A_{t}= A\sin[2\pi \frac{k2d}{c}t + \frac{4\pi \Delta d}{\lambda}]
 \end{equation}
 The phase of the IF signal is very sensitive to to small change in object range ~\cite{rao_2017}.
 
@@ -389,7 +387,7 @@ The phase of the IF signal is very sensitive to to small change in object range 
     \includegraphics[width=0.6\textwidth]{Master's thesis/images/delay_sweeps.PNG} 
      
     \caption{Two consecutive chirps giving rise to a phase difference}
-    \caption*{\textit{Source:} Nilsson, J., Hassbring, L. (2020). Machine Learning for FMCW Radar Interference Mitigation~\cite{nilsson2020machine}.}
+    \caption*{\textit{Source:} Nilsson, J., Hassbring, L. (2020). Machine Learning for FMCW RADAR Interference Mitigation~\cite{nilsson2020machine}.}
     
 
     \label{fig:delay}
@@ -397,18 +395,18 @@ The phase of the IF signal is very sensitive to to small change in object range 
 \end{figure}  
 
 To calculate the velocity of the object, two chirps are transmitted separated by time interval of $T_{c}$.
-It is known that $d= vT$ (v is velocity of the target object), From Eq. ~\ref{eq:theta}, substituting $\Delta d$, we get -
+It is known that $d= vT$ (v is velocity of the target object), From eq~\eqref{eq:theta}, substituting $\Delta d$, we get:
 \begin{equation}
     \omega= \frac{4\pi v \Delta t}{\lambda}
 \end{equation}
-Substituting $\Delta t$ with $T_{c}$, which is the time between two consecutive sweeps and reordering, we get-
+Substituting $\Delta t$ with $T_{c}$, which is the time between two consecutive sweeps and reordering, we get:
 
 \begin{equation}
     v= \frac{\lambda \omega}{4\pi T_{c}}
 \end{equation}
 Therefore, in summary, it can be said that the phase difference obtained from the Fourier transformation of two consecutive chirps, can help in determining the velocity of that object. 
 
-The phase shift between consecutive chirps is the same for any two chirps. This phase shift can be easily calculated by performing FFT on the Range FFT from each chirp. This is called Doppler FFT. The whole process is the called Range-Doppler FFT, i.e, first performing Range FFT on the signals to evaluate the Range and then performing another Doppler FFT on consecutive chirps to obtain the velocities of these objects and then to differentiate them. 
+The phase shift between consecutive chirps is the same for any two chirps. This phase shift can be easily calculated by performing FFT on the Range FFT from each chirp. This is called Doppler FFT. The whole process is the called Range-Doppler FFT, i.e., first performing Range FFT on the signals to evaluate the Range and then performing another Doppler FFT on consecutive chirps to obtain the velocities of these objects and then to differentiate them. 
 The Range Doppler FFT is done with the help of matrix, with the dimensions N x M where M is the number of chirps and N is the number of samples in each chirp.
 
 A proper visualization of the Range-Doppler FFT process can be seen in Figure ~\ref{fig:range-doppler-FFT}. Every IF signal/Baseband signal have its own phase. Every baseband signal is inserted row wise in a matrix. Every row undergoes a Range FFT operation for Range estimation. This is done in parallel as soon as the FMCW received the RX signals. The result is peak in some columns of the matrix. Once the number of received signals are enough, column wise FFTs are performed for a radial velocity estimation.
@@ -427,20 +425,20 @@ This results in peaks in different cells of the matrix. These cells corresponds 
 
 Therefore in summary, it can be said that for the object at different ranges or the objects at different ranges can be easily detected using Range-Doppler FFT.
 
-\subsubsection{Phase Evaluation for moving targets}
+\subsubsection*{Phase Evaluation for moving targets}
 
 In the previous subsection, the complete process about Range-Doppler FFT was explained. However, now one most case rises up, where the Range-Doppler FFT fails completely. Consider a case where two objects at same radial distance are moving to/from the FMCW at the same radial velocity. The Range-Doppler FFT will give rise to one bin for two different object. So this situation forces us to ask the question
-\textit{"How can the two objects placed at same radial distance and moving with same radial velocity from FMCW can be  separated?"}
+\textit{``How can the two objects placed at same radial distance and moving with same radial velocity from FMCW can be  separated?"}
 
-A very simple answer is to give two eyes to the FMCW. The main advantage of humans having two eyes is to interpret the world in 3D, i.e, humans can perceive the depth of the objects in field of view because eyes are located at different points. So using this analogy, if we use multiple receiving antennas for the FMCW, it will help us solving the problem in question.
+A very simple answer is to give two eyes to the FMCW. The main advantage of humans having two eyes is to interpret the world in 3D, i.e., humans can perceive the depth of the objects in field of view because eyes are located at different points. So using this analogy, if we use multiple receiving antennas for the FMCW, it will help us solving the problem in question.
 
-An FMCW measures Angle of Arrival(AoA) to resolve this problem. Angle estimation will require a minimum of 2 receiver antennas. Assuming the receiver antennas are placed in close proximity, there ratio of the radial distance from one antenna with other will be close to 1. This means, even if the two antennas in consideration have some Range FFT (as they are almost at same radial distance from the object), there will be a phase change involved. Eq. ~\ref{eq:theta}, shows that an object which made a small change in distance $\Delta d$ in two consecutive sweeps give rise to a phase difference $\Delta \theta$ or $\omega$.
+An FMCW measures Angle of Arrival(AoA) to resolve this problem. Angle estimation will require a minimum of 2 receiver antennas. Assuming the receiver antennas are placed in close proximity, there ratio of the radial distance from one antenna with other will be close to one. This means, even if the two antennas in consideration have some Range FFT (as they are almost at same radial distance from the object), there will be a phase change involved. Eq~\eqref{eq:theta}, shows that an object which made a small change in distance $\Delta d$ in two consecutive sweeps give rise to a phase difference $\Delta \theta$ or $\omega$.
 \[\omega= \frac{4\pi \Delta d}{\lambda}\]
 Using the same mathematical notation, it can be said that the phase difference between the two antennas will be
 \begin{equation}\label{eq:AoA}
 \omega= \frac{2\pi \Delta d}{\lambda}    
 \end{equation}
-Here is the eq.~\ref{eq:AoA}, the equation has a factor of 2 instead of 4 in eq.~\ref{eq:theta}. The difference can be understood by mere intuition. When an object moves by some distance $\Delta d$, the phase difference will brought out by the two and fro signal. Here , in contrast, the phase difference is brought by the distance between the two receiving antennas. This is the reason the eq. has been divided by 2 ~\cite{rao_2017}.
+Here is the eq~\eqref{eq:AoA}, the equation has a factor of 2 instead of 4 in eq~\eqref{eq:theta}. The difference can be understood by mere intuition. When an object moves by some distance $\Delta d$, the phase difference will brought out by the two and fro signal. Here , in contrast, the phase difference is brought by the distance between the two receiving antennas. This is the reason the eq. has been divided by 2 ~\cite{rao_2017}.
  \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
@@ -449,15 +447,15 @@ Here is the eq.~\ref{eq:AoA}, the equation has a factor of 2 instead of 4 in eq.
     \label{fig:AoA}
   \end{center}
 \end{figure}  
-Using the geometry of Fig ~\ref{fig:AoA} and using eq.~\ref{eq:AoA}, it can be derived that-
-\[\omega= \frac{2\pi dsin(\theta)}{\lambda}\]
-Hence, $\theta$ which is the AoA can be derived as-
+Using the geometry of Fig. ~\ref{fig:AoA} and using eq~\eqref{eq:AoA}, it can be derived that:
+\[\omega= \frac{2\pi d\sin(\theta)}{\lambda}\]
+Hence, $\theta$ which is the AoA can be derived as:
 \begin{equation}
-    \theta= sin^{-1}(\frac{\lambda\omega}{2\pi d})
+    \theta= \sin^{-1}(\frac{\lambda\omega}{2\pi d})
 \end{equation}
-It is worth mentioning that the maximum phase difference can be more than $\pi$, For phase difference more than $\pi$,it will be impossible to say of the phase difference was actually $\theta$ or $\theta-\pi$.
+It is worth mentioning that the maximum phase difference can be more than $\pi$, For phase difference more than $\pi$, it will be impossible to say of the phase difference was actually $\theta$ or $\theta-\pi$.
 
-Now consider the \textbf{figure},it is pretty much evident that the two objects at same radial distance will result in same peaks in the Range-Doppler FFT, however multiple antennas give rise to a phase difference.
+Now consider the Fig. \ref{fig:range-doppler-FFT}, it is pretty much evident that the two objects at same radial distance will result in same peaks in the Range-Doppler FFT, however multiple antennas give rise to a phase difference.
 
 
 
@@ -475,7 +473,7 @@ Specify about antennas and receivers
 \begin{figure}[ht]
   \begin{center}
     % below the size of the figure has been reduced for example
-    \includegraphics[scale = 0.08]{Master's thesis/images/Radar_internal.jpg} 
+    \includegraphics[scale = 0.08]{Master's thesis/images/RADAR_internal.jpg} 
     \caption{Internal details of the RADAR}
     \label{fig:AoA}
   \end{center}
@@ -500,51 +498,51 @@ Specify about antennas and receivers
 \end{center}
 
 \section{Artificial Intelligence}
-Artificial intelligence (AI) is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals, which involves consciousness and emotionality. 'Strong' AI is usually labelled as artificial general intelligence (AGI) while attempts to emulate 'natural' intelligence have been called artificial biological intelligence (ABI) ~\cite{poole1998computational} .
+Artificial Intelligence (AI) is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals, which involves consciousness and emotionality. `Strong' AI is usually labelled as artificial general intelligence (AGI) while attempts to emulate `natural' intelligence ~\cite{poole1998computational} .
 There are numerous ways to define Artificial Intelligence (AI) as there are many controversial discussions about the definition of human intelligence. On a broader level, the AI is an umbrella term for any hardware or software that enables a machine to mimic human intelligence. AI should be adaptive and, in many cases, autonomous as well ~\cite{touger2020}.
 \subsection{Machine Learning}
 
-Machine Learning (ML) is a subset of AI. It is the study of computer algorithms that improve automatically through experience and by the use of data ~\cite{mitchell1997machine}. With the help of Mathematics, Statistics and Probability, the machines can learn from the data and then can make decision on the new unseen data. ML allows to automatically extract relevant information from data applying it to analyze new data.
-There are several machine learning methods. Different methods can be tested to determine the best option for a certain problem. The ML algorithms are classified into supervised , unsupervised learning and Reinforcement Learning algorithms.
+Machine Learning (ML) is a subset of AI. It is the study of computer algorithms that improve automatically through experience and by the use of data ~\cite{mitchell1997machine}. With the help of Mathematics, Statistics and Probability, the machines can learn from the data and then make decision on the new unseen data. ML allows to automatically extract relevant information from the data.
+There are several Machine Learning methods. Different methods can be tested to determine the best option for a certain problem. The ML algorithms are classified into Supervised , Unsupervised Learning and Reinforcement Learning algorithms.
 \newline
 
 \noindent \textbf{Supervised Learning}
 \newline
 
-\noindent In Supervised learning, the goal is to estimate the unknown model that maps known inputs to known outputs. The data-set, in that case, has defined targets or labels that are pre-determined. The problem can be classification, Regression or Probability estimation. Training set can be defined in the form \( D = {<x,t>} => t = f(x)  \) where D is the dataset, x is the feature vector, t is the target variable. Numerous algorithms are used for supervised learning like Support Vector Machines, Decision Tree, K-Nearest Neighbors, Naive Bayes etc. 
+\noindent In Supervised Learning, the goal is to estimate the unknown model that maps known inputs to known outputs. The data-set, in that case, has defined targets or labels that are pre-determined. The problem can be Classification, Regression or Probability estimation. Training set can be defined in the form \( D = {<x,t>} => t = f(x)  \) where \(D\) is the dataset, \(x\) is the feature vector, \(t\) is the target variable. Numerous algorithms are used for Supervised Learning like Support Vector Machines \cite{noble2006support}, Decision Tree \cite{myles2004introduction}, K-Nearest Neighbors \cite{dudani1976distance}, Naive Bayes \cite{murphy2006naive} etc. 
 \newline
 
 \noindent \textbf{Unsupervised Learning}
 \newline
 
-\noindent On the contrary, In Unsupervised learning, the goal is learning a more efficient representation of a set of unknown inputs. Here the expected targets are not
-provided to the algorithm. Therefore, the algorithm has to learn some patterns in the data without any supervision or prior knowledge of what the data-set might be about.  Training set can be defined in the form \( D = {x} => ? = f(x) \) where D is the dataset, x is the feature vector, ? is the unknown representation. The most common problems in unsupervised learning includes Clustering and Compression. Numerous algorithms are used for unsupervised learning like K-Means, Self organizing maps, Principal Component Analysis etc.
+\noindent On the contrary, In Unsupervised Learning, the goal is learning a more efficient representation of a set of unknown inputs. Here the expected targets are not
+provided to the algorithm. Therefore, the algorithm has to learn some patterns in the data without any supervision or prior knowledge of what the data-set might be about.  Training set can be defined in the form \( D = {x} => ? = f(x) \) where \(D\) is the dataset, \(x\) is the feature vector, ? is the unknown representation. The most common problems in Unsupervised Learning includes Clustering and Compression. Numerous algorithms are used for Unsupervised Learning like K-Means \cite{yadav2013review}, Self organizing maps \cite{kohonen1990self}, Principal Component Analysis \cite{jolliffe2005principal} etc.
 \newline
 
 \noindent \textbf{Reinforcement Learning}
 \newline
 
-\noindent Reinforcement learning is an area of Machine Learning which is about deciding the best suitable action to maximize reward in a particular situation. It is used in many software and machines to find the best possible behavior or path it should take in a specific situation. Reinforcement learning differs from the supervised learning as in the later, the training data has the correct label with it so the model is trained with the correct answer itself whereas in the former, there is no answer but the reinforcement agent decides what to do to perform the given task. In the absence of a training dataset, it is bound to learn from its experience \cite{geeksforgeeks_2020}.
+\noindent Reinforcement Learning is an area of Machine Learning which is about deciding the best suitable action to maximize reward in a particular situation. It is used in many software and machines to find the best possible behavior or path it should take in a specific situation. Reinforcement Learning differs from the Supervised Learning as in the later, the training data has the correct label with it so the model is trained with the correct answer itself whereas in the former, there is no answer but the reinforcement agent decides what to do to perform the given task. In the absence of a training dataset, it is bound to learn from its experience \cite{geeksforgeeks_2020}.
 
 
 
 
-The main challenge with Machine Learning is that it is supposed to perform efficiently on new, unseen data. In order to verify of the Machine Learning models performs well on the new data, usually the dataset is divided into training and test set. The model is trained on training data. No where in the training process, the test data set is involved. A good model should give high performance on test data set along with the train data set. This feature is called generalization.The generalization error i.e test error must be minimized. The trained model’s performance is tested with the
+The main challenge with Machine Learning is that it is supposed to perform efficiently on new, unseen data. In order to verify of the Machine Learning models performs well on the new data, usually the dataset is divided into training and test set. The model is trained on training data. No where in the training process, the test data set is involved. A good model should give high performance on test data set along with the train data set. This feature is called generalization. The generalization error i.e., test error must be minimized. The trained model's performance is tested with the
 test set to measure generalization error. If there is high performance on train dataset and low performance on test dataset, the model is said to have over fitted the train set, or simply it has just learned the train set.
 
 Some of the factors that determine the performance of the ML include the training error, test error and the gap between them. More detailed information about train set and test set performance is provided in the next section.
 
 \subsection{Deep Learning}
-Machine Learning tasks can be solved by designing the right set of features to extract. One can use the domain knowledge to design features that are robust. While the domain knowledge works perfectly fine for most the cases like the cases where features can be numerically or quantitatively explained, however problem arises for situation like images, videos or text. For such tasks, it is difficult to known what features should be extracted. It maybe possible to extract the features in image context with the algorithms that considers intensity and change in intensity with respect to pixels. However most of the times, these features are not perfect and eventually forces the researcher to reiterate the feature extraction phase.
+Machine Learning tasks can be solved by designing the right set of features to extract. One can use the domain knowledge to design features that are robust. While the domain knowledge works perfectly fine for most the cases like the cases where features can be numerically or quantitatively explained, however problem arises for situation like images, videos or text. For such tasks, it is difficult to known what features should be extracted. It maybe possible to extract the features in an image context with the algorithms that considers intensity and change in intensity with respect to pixels. However most of the times, these features are not perfect and eventually forces the researcher to reiterate the feature extraction phase.
 
-These problems can be solved with Representation learning, i.e, we use Machine Learning not only to predict the mapping of the representation, but also the representation itself.Deep learning is a subset of Machine Learning based on artificial neural networks which learns the representations.
-Deep learning solves the central problem in representation learning by introducing representations that are expressed in terms of other, simpler representations. Deep learning enables the computer to build complex concepts out of simpler concepts ~\cite{Goodfellow-et-al-2016}.  
+These problems can be solved with Representation Learning, i.e., we use Machine Learning not only to predict the mapping of the representation, but also the representation itself. Deep Learning is a subset of Machine Learning based on Artificial Neural Networks which learns the representations.
+Deep Learning solves the central problem in Representation Learning by introducing representations that are expressed in terms of other, simpler representations. Deep Learning enables the computer to build complex concepts out of simpler concepts ~\cite{Goodfellow-et-al-2016}.  
 
-Deep Neural Networks is a supervised learning approach of a deep network of processors called neurons.
+Deep Neural Networks is a Supervised Learning approach of a deep network of processors called neurons.
 A neuron originally is a biological term for a fundamental unit of the brain. The
 neuron is designed to pass electrochemical signals to the other neurons and to other parts
-of the brain ~\cite{Goodfellow-et-al-2016}. The architecture of the artificial neural network is inspired by the brain's neural networks.
-The neural network processors receive and transmit signals between each other. The
+of the brain ~\cite{Goodfellow-et-al-2016}. The architecture of the Artificial Neural Network is inspired by the brain's Neural Networks.
+The Neural Network processors receive and transmit signals between each other. The
 neurons store and process information in the connections between the neurons which are
 called weights. The weights are multipliers on the inputs of the neuron.
 \newline
@@ -553,30 +551,173 @@ called weights. The weights are multipliers on the inputs of the neuron.
 \newline
 
 \noindent The Deep Neural Networks are composed of layers. Each layer further is composed of several neurons. The input layer or the first layer of the network get their inputs directly from the data. For
-example, in the case of an image, the input layer consists of all the pixels values of the image. The rest of the layers of the network (hidden layers) use the previous layer's outputs as their input and feed their produced output to the proceeding layer. The final layer is called the output layer which is used for delivering the output of the whole neural network.
-The depth of the deep learning system enables the computer to learn a hierarchical program. Each layer has some instructions
-that are executed in parallel. Instructions in different layers are executed sequentially
-in the order of the layers. There is state information that is similar to the pointer in a
-traditional computer program. The state information is stored in the representation of the neural network
+example, in the case of an image, the input layer consists of all the pixels values of the image. The rest of the layers of the network i.e., hidden layers use the previous layer's outputs as their input and feed their produced output to the proceeding layer. The final layer is called the output layer which is used for delivering the output of the whole Neural Network.
 
-
-
-\noindent \textbf{Training Neural Networks}
-
-\noindent\textbf{Regularization}
-
-\noindent \textbf{Hyper-parameter Tuning}
+The depth of the Deep Learning system enables the computer to learn a hierarchical program. For e.g. when dealing with images, it learns the feature hierarchy all the way from pixels to classifier. Each layer has some actions
+that are executed in parallel, however,  actions in different layers are executed sequentially in the order of the layers ~\cite{Goodfellow-et-al-2016}. 
+\newline
 
 \noindent \textbf{Feedforward Neural Networks}
+\newline
+
+\noindent Feedforward Neural Networks (FNN) are often called Multi Layered Perceptrons(MLP) or Deep Feedforward networks is the typical form of Deep Learning models. The models are called Feedforward as the information flow is only in the forward direction, i.e., information flows through the function which is evaluated on \(X\) (input vector), then some intermediate computations which define \(f\) and finally to the output \(y\). In other words, there is no feedback connection from output that is fed in the model ~\cite{Goodfellow-et-al-2016}.
+
+FNN's learns the characteristics of the input vector at each layer. This is a perfect analogy to the brain in which there are different regions for learning different characteristics of the input. The main advantage of FNN over traditional Machine Learning is its ability to learn the non linear boundaries. Neural Network can train a model by combining different distributions to one desirable complex distribution. When the data is not linearly separable, linear models fails to approximate to good distributions ~\cite{Goodfellow-et-al-2016}. 
+
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=0.60\textwidth]{Master's thesis/images/fnn.PNG} 
+    \caption{A Feedforward Neural Network with one hidden layer}
+    \label{fig:FNN}
+  \end{center}
+\end{figure}  
+
+The goal of the FNN is to approximate a function \(f^{*}\). This is somewhat similar to linear regression where the goal is to find a function  \(f\) where  \(y= f(x)\). In the similar fashion, a FNN defines a mapping between \(y\) and \(x\), such that \(y= f(x, \theta) \), where $\theta$ are the parameters of the FNN that result in the best possible approximation. 
+
+The layers between the input and the output layers are called hidden layers. They are called hidden as the training does not show the output of these layers. These is no constraint on the number of hidden layers, a hidden layer can have as many hidden units as desired. The main task of the hidden layers is to increase the non -linearity, thus changing the representation of the data. The more the hidden layers are, the more complex model representation is ~\cite{Goodfellow-et-al-2016}.
+
+In the experiments, FNN with different hidden layers and different complexity is used. Generally FNN can be represented as 
+\begin{equation}\label{eq:fnn}
+f(x) = f^{n}(..f^{2}(f^{1}(x))..)
+\end{equation}
+
+where
+
+\(f^{1}\) : \textit{The input layer}
+
+\(f^{2....n-1}\) : \textit{The hidden layers}
+
+\(f(n)\): \textit{The output layer}
+
+For an instance, in Fig. ~\ref{fig:FNN}, the NN is composed of an input layer, one hidden layer and one output layer. The output can be be represented in the form of \(f(x) =f^{2}(f^{1}(x))\).
+\newline
+
+\noindent \textbf{Training Neural Networks}
+\newline
+
+\noindent Before diving into the training phase, we need to know about the cost function. Loss helps to analyse the difference between the predicted value and the actual value. The Function used to quantify this loss in the form of a numerical entity is called a Loss/Cost function.  
+
+The cost function can vary based on the type of problem. For an instance, same cost function can't be used for Regression and Classification. In FNN for regression, the focus is on minimizing the quadratic cost ~\cite{Goodfellow-et-al-2016}. Eq\eqref{eq:mse} is a Mean Square Error type of cost function .
+\begin{equation}\label{eq:mse}
+C(\theta) = \frac{1}{2N}\Sigma_{x}\lVert y(x) - f(x)) \rVert^{2}
+\end{equation}
+There are many other forms of cost functions for regression problem apart from MSE like Mean Error, Mean Absolute Error (MAE), Mean Square Logarithmic Error (MSLE), Root Mean Square Error(RMSE).
+
+For a binary Classification problem , the typical cost functions are Binary Cross-Entropy, Hinge Loss, Squared Hinge Loss.
+For a multiclass Classification problem, the cost functions can be  Multi-Class Cross-Entropy Loss, Sparse Multiclass Cross-Entropy Loss, Kullback Leibler Divergence Loss.
+
+\begin{center}
+\begin{tabular}{ |c|p{0.2\linewidth}|c|c| }
+\hline
+ S.No. & Name & Type of Problem & Formula \\ 
+ \hline
+1 &	MAE	& Regression & \(\frac{1}{N}\sum{x}\lVert y(x) - f(x)) \rVert \)\\
+2 &	RMSE	& Regression & \(\sqrt{\frac{\sum_{x}(y(x) - f(x))t}{N}} \)\\
+3 &	Binary Cross Entropy	& Classification & \(\sum_{i = 1}^{N} p(x)log(q(x))\)\\
+4 &	Categorical Cross Entropy	& Classification & \(\sum_{j = 1}^{M}\sum_{i = 1}^{N}(y(x_{ij})*log(f(x_{ij})))\)\\
+5 &	Hinge Loss	& Classification & \(max(0, 1-f.t)\)\\
+ \hline
+\end{tabular}
+\end{center}
+
+The second important aspect of a NN is an \textbf{Optimizer}. An Optimizer is used to minimize the cost function. It is used for updating the values of the weights and biases after every training cycle or epoch until the cost function reaches the global optimum. These algorithms minimize or maximize the value of a cost function using its gradient values with respect to the parameters. Neural Networks are trained by using iterative, gradient-based optimizers. There are many optimizers which are used for training the model like Stochastic gradient descent, Adagrad, Adam, RMSProp etc.  ~\cite{Goodfellow-et-al-2016}. 
+
+NN learn to predict the pre-defined targets from the provided training data-set. To get a high accuracy, the NN needs to be trained on large training data sets. If the data-set is not large enough for the training, the network might lead to over fitting.
+This results in lower accuracy when it is tested on general data, which means the model is not generalized.
+
+Two different sets are required for the network. The training set for training and the test-set for testing the network. The training set is further split into training and validation subsets that are used during the training process. The training subsets are used to update the weights of the neurons which minimize the loss function. After each epoch of the training process, the validation determine the performance of the training algorithm. The validation
+set evaluates when to stop the model which is used for preventing over-fitting  ~\cite{Goodfellow-et-al-2016}. 
+The test-set is then used to test the network after the whole training process is done. The test data set should be completely new to the model i.e., it has never seen such samples before. Otherwise, the report loss measure is too optimistic  ~\cite{Goodfellow-et-al-2016}.
+\newline
+
+\noindent\textbf{Regularization}
+\newline
+
+\noindent One of the quintessential aspects of training your ML model is avoiding overfitting and underfitting. The model trained might sometimes lead to underfitting. This happens when the complexity of the model is not enough to incorporate the complexity of the training dataset. Under fitting can be improved by increasing the depth or the width of the Neural Network ~\cite{Goodfellow-et-al-2016}.
+
+On the other hand, The model will have a low accuracy if it is overfitting. This happens when the model is trying too hard to learn the training dataset, or, it learns too much that it is not able to generalize on the new unseen data. The model even learns the random noises in the dataset. Noise means the data points that do not really represent the true characteristics of your data, but random chance. This is when Regularization comes into picture ~\cite{Goodfellow-et-al-2016}.  
+
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=0.750\textwidth]{Master's thesis/images/regular.png} 
+    \caption{Representation of model underfitting and overfitting ~\cite{Goodfellow-et-al-2016}}
+    \label{fig:FNN}
+  \end{center}
+\end{figure} 
+
+Regularization is a technique to shrink the coefficient estimates towards zero. Reiterating, this technique discourage the machine to learn complicated models to avoid the risk of overfitting. There are many regularization techniques used in Machine Learning, the most common ones being Ridge and Lasso Regression. In Deep Learning, apart from these common regularization techniques, some specific techniques are used for e.g. Batch Normalization, Layer Normalization, Pooling, Early Stopping, Gradient Clipping and Dropout. All these normalization techniques have been used in this thesis work while training the Deep Learning models.
+\newline
+
+\noindent \textbf{Hyper-parameter Tuning}
+\newline
+
+\noindent Hyper-parameter tuning is a process to choose the set of optimal parameters for a learning algorithm. A hyper parameter is a parameter which can not change during the training process, i.e., their values are set prior to the learning phase. However, there are some parameters which are changed for learning. For an instance, in a FNN, the width and the depth of the network are parameters since they need to remain same during the training process. On the contrary the weights of every unit or the neurons are optimized as the learning proceeds, i.e., they are adjusted whenever a new data is provided in order to generalize to the new set as well.
+
+In order to set the hyper parameters, two different types of optimization processes are used in this thesis.
+\begin{itemize}
+    \item \textbf{Grid Search} - It is a brute force technique of optimization which works by searching the provided subset exhaustively. The advantage of Grid Search is that it is guaranteed to find the optimal combination of the parameters specified. However it is very computationally expensive.
+    \item \textbf{Random Search} - It is less computationally expensive than grid search. In Random Search, it searches the specified subset randomly rather than searching them exhaustively. However in Random Search, we are not guaranteed to find the optimal combination.
+\end{itemize}
+
+
+
 
 \noindent \textbf{Convolutional Neural Networks}
+\newline
 
-\noindent \textbf{Structure of a Convolutional Layer}
+\noindent Convolutional Neural Networks (CNN) are trainable models with multiple processing layers and many parameters. In CNNs, the convolution mathematical operation is used instead of general matrix multiplication. 
 
-\noindent \textbf{Parameters of a Convolutional Layer}
+A sliding window called kernel is used to perform the convolution process. The input and the kernel are usually a multidimensional array.The parameters of the Kernel are adjusted during the learning process. The input is convolved with the Kernel in order to create an output. In the case of a 2D image, the input would be a matrix of the number of pixels and the kernel would be a 2D convolution sliding window.
+
+For e.g. in the Fig. \ref{fig:CNN}, the matrix in blue shade represents the input, kernel is represented by navy blue matrix. The Kernel is convoluted with the a portion of the input, which generates one section of the output matrix. 
+
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=0.50\textwidth]{Master's thesis/images/cnn.PNG} 
+    \caption{The Input, The Kernel and the Output ~\cite{shafkat_2018}}
+    \label{fig:CNN}
+  \end{center}
+\end{figure} 
+
+There are many advantages of using CNNs instead of FNNs in some scenarios like image Classification.
+\begin{itemize}
+    \item \textbf{Fewer parameters}: CNN uses a small set of parameters i.e., the kernel to calculate outputs of the entire image, so the model has much fewer parameters compared to an FNN.
+    \item \textbf{Sparsity of connections}: In each layer, each output element depends only on a small fraction of input elements, thus making forward and backward passes more efficient.
+    \item \textbf{Parameter sharing and spatial in-variance}: The features learned by a kernel in one section of the image can be used to detect similar pattern in a different section of another image.
+\end{itemize}
 
 
 
+\noindent \textbf{Structure of a Convolutional Neural Network}
+\newline
+
+\noindent Every layer in Convolutional Neural Network is composed of three dimensions: width, height, and depth. The depth defines the number of channels (filters) for the layer. For example, In an RGB image of 28x28 pixels,
+the input will have the dimension of 28x28x3 where the width is 32, the height is 32 and the depth is 3.
+In Figure \ref{fig:CNN}, a representation of how CNN layer is distributed. Each layer in a CNN
+receives an input 3D volume and transforms it into an output 3D volume by applying a
+differentiable function [38].
+\begin{figure}[ht]
+  \begin{center}
+    % below the size of the figure has been reduced for example
+    \includegraphics[width=0.95\textwidth]{Master's thesis/images/cnn_structure.PNG} 
+    \caption{The structure of CNN. \\
+    Created by alexnail.me ~\cite{lenail}}
+    \label{fig:CNN}
+  \end{center}
+\end{figure} 
+
+In this thesis, PyTorch library has been used for building Convolutional Neural Networks. Different structures of the model were tried using training and testing set in order to minimize the loss function. 
+The RADAR signal is converted to a 2D spectrogram and then this spectrogram was fed into the model.
+
+CNNs has been used in this thesis because they are useful in the spectrogram domain, which basically tells how the frequencies in a signal vary over time. CNNs are chosen in this thesis because pattern recognition is the main concept in detecting RADAR signals since the waves subject to motions have a distinguishable pattern as compared to the waves where there is no motion. Therefore the CNN network can detect useful features from the pattern in the input data.
+
+
+%\textbf{WRONG!!!!!!}
+%CNN network has a certain number of layers.The kernel is the sliding window that slides on the input layer.
+%There are three parameters in Convolutional Neural Network. The number of layers, number of channels in every layer. Finally, the kernel size which specifies the height and width of the 2D convolution sliding window
 %\section{Lighting Industry}
 %\section{Machine Learning Literature Review}
 
